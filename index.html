@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital SAT 1500+ Master Playbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-sidebar: #0f172a;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent: #2563eb;
+            --accent-light: #eff6ff;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f1f5f9;
+            --sidebar-width: 340px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-sidebar: #070a12;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-light: #1e293b;
+            --border: #1e293b;
+            --code-bg: #030712;
+            --code-text: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--bg-sidebar);
+            color: #e2e8f0;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 50;
+        }
+
+        aside::-webkit-scrollbar {
+            width: 5px;
+        }
+        aside::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            background: #2563eb;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        .search-box {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.82rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Quick collapse / expand buttons */
+        .toc-actions {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .toc-actions button {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toc-actions button:hover {
+            background: rgba(37, 99, 235, 0.4);
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
+
+        /* Collapsible TOC */
+        .toc-wrapper {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .toc-wrapper ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-wrapper li {
+            margin: 2px 0;
+            position: relative;
+        }
+
+        .toc-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+
+        .toc-item-header:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .toc-wrapper li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 6px 8px;
+            flex: 1;
+            line-height: 1.35;
+            display: block;
+            border-radius: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .toc-wrapper li a:hover,
+        .toc-wrapper li a.active {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .toc-wrapper li a.active {
+            background: #2563eb;
+            color: #ffffff !important;
+        }
+
+        .toc-toggle {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 6px 10px;
+            font-size: 0.7rem;
+            line-height: 1;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.15s;
+        }
+
+        .toc-toggle:hover {
+            color: #60a5fa;
+        }
+
+        /* Sub-menus collapsed by default */
+        .toc-wrapper ul ul {
+            display: none;
+            padding-left: 10px;
+            margin-left: 8px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toc-wrapper ul ul.open {
+            display: block;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px 60px 96px 60px;
+            max-width: 1100px;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-title-mini {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* Markdown Typography */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            margin: 28px 0 16px 0;
+            line-height: 1.25;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin: 40px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 28px 0 12px 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+        }
+
+        ul, ol {
+            margin: 12px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            background: var(--bg-secondary);
+            padding: 14px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 16px 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-secondary);
+            color: var(--accent);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            border: 1px solid var(--border);
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            border: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88rem;
+        }
+
+        th {
+            background-color: var(--bg-secondary);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(37, 99, 235, 0.04);
+        }
+
+        @media print {
+            aside, .header-bar { display: none !important; }
+            main { margin-left: 0 !important; padding: 0 !important; max-width: 100% !important; }
+            body { background: white !important; color: black !important; }
+            h1, h2, h3 { page-break-after: avoid; }
+            table, pre { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="brand">
+            <span>🎯 SAT 1500+</span>
+            <span class="badge">MASTER</span>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="toc-search" placeholder="Konu veya kural ara..." onkeyup="filterTOC()">
+        </div>
+
+        <div class="toc-actions">
+            <button onclick="expandAllTOC()">▼ Tümünü Aç</button>
+            <button onclick="collapseAllTOC()">▶ Tümünü Kapat</button>
+        </div>
+
+        <div class="toc-wrapper" id="toc-container">
+            <div class="toc">
+<ul>
+<li><a href="#digital-sat-1500-master-playbook-the-definitive-strategy-execution-desmos-system">DIGITAL SAT 1500+ MASTER PLAYBOOK: THE DEFINITIVE STRATEGY, EXECUTION &amp; DESMOS SYSTEM</a><ul>
+<li><a href="#executive-architecture-test-engine-specifications">EXECUTIVE ARCHITECTURE &amp; TEST ENGINE SPECIFICATIONS</a><ul>
+<li><a href="#1-multistage-adaptive-engine-mechanics">1. Multistage Adaptive Engine Mechanics</a></li>
+<li><a href="#2-pretest-unscored-questions">2. Pretest / Unscored Questions</a></li>
+<li><a href="#3-item-response-theory-irt-scoring-asymmetry">3. Item Response Theory (IRT) Scoring Asymmetry</a></li>
+</ul>
+</li>
+<li><a href="#part-1-exhaustive-community-scorer-mining-r1">PART 1: EXHAUSTIVE COMMUNITY &amp; SCORER MINING (R1)</a><ul>
+<li><a href="#11-the-1500-scorer-resource-tier-list-s-tier-to-c-tier">1.1 The 1500+ Scorer Resource Tier List (S-Tier to C-Tier)</a><ul>
+<li><a href="#detailed-resource-evaluations-pitfall-warnings">Detailed Resource Evaluations &amp; Pitfall Warnings</a><ul>
+<li><a href="#1-official-college-board-bluebook-practice-tests-16">1. Official College Board Bluebook Practice Tests 1–6</a></li>
+<li><a href="#2-college-board-educator-question-bank-the-spoiler-prevention-protocol">2. College Board Educator Question Bank: The Spoiler Prevention Protocol</a></li>
+<li><a href="#3-erica-meltzer-the-ultimate-guide-to-sat-grammar-the-critical-reader">3. Erica Meltzer: The Ultimate Guide to SAT Grammar &amp; The Critical Reader</a></li>
+<li><a href="#4-preppros-digital-sat-math-matthew-stroup">4. PrepPros Digital SAT Math (Matthew Stroup)</a></li>
+<li><a href="#5-tutorllini-test-prep-youtube-desmos-playlist-800-club">5. Tutorllini Test Prep (YouTube Desmos Playlist &amp; "800 Club")</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#12-actionable-study-schedules-pacing-blueprints">1.2 Actionable Study Schedules &amp; Pacing Blueprints</a><ul>
+<li><a href="#blueprint-1-the-3-month-standard-architecture-12-weeks-12501350-rightarrow-1530">Blueprint 1: The 3-Month Standard Architecture (12 Weeks — 1250/1350 $\rightarrow$ 1530+)</a></li>
+<li><a href="#blueprint-2-the-6-week-intensive-sprint-13801450-rightarrow-1530">Blueprint 2: The 6-Week Intensive Sprint (1380/1450 $\rightarrow$ 1530+)</a></li>
+<li><a href="#blueprint-3-the-2-week-emergency-cram-14-day-triage-rapid-60100-point-lift">Blueprint 3: The 2-Week Emergency Cram (14-Day Triage — Rapid 60–100 Point Lift)</a></li>
+</ul>
+</li>
+<li><a href="#13-breaking-the-14001450-plateau">1.3 Breaking the 1400–1450 Plateau</a><ul>
+<li><a href="#1-root-cause-analysis-1400-knowledge-vs-1500-execution">1. Root Cause Analysis: 1400 Knowledge vs. 1500+ Execution</a></li>
+<li><a href="#2-the-four-deadly-traps-keeping-scorers-under-1500">2. The Four Deadly Traps Keeping Scorers Under 1500</a></li>
+<li><a href="#3-hard-module-2-pacing-algorithms">3. Hard Module 2 Pacing Algorithms</a><ul>
+<li><a href="#rw-hard-module-2-reverse-navigation-architecture">RW Hard Module 2: Reverse Navigation Architecture</a></li>
+<li><a href="#math-hard-module-2-desmos-first-time-banking-architecture">Math Hard Module 2: Desmos-First Time-Banking Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#14-final-23-weeks-peak-performance-biological-protocol">1.4 Final 2–3 Weeks Peak Performance &amp; Biological Protocol</a><ul>
+<li><a href="#1-the-tapering-calendar-day-21-to-day-0">1. The Tapering Calendar (Day -21 to Day 0)</a></li>
+<li><a href="#2-sleep-optimization-the-gradual-10-day-circadian-phase-shift">2. Sleep Optimization &amp; The Gradual 10-Day Circadian Phase Shift</a></li>
+<li><a href="#3-test-day-nutrition-blood-glucose-stability-protocol">3. Test-Day Nutrition &amp; Blood-Glucose Stability Protocol</a></li>
+<li><a href="#4-cognitive-priming-neural-warm-up-transit-protocol-test-day-0600-0745-am">4. Cognitive Priming Neural Warm-Up &amp; Transit Protocol (Test Day 06:00 – 07:45 AM)</a></li>
+<li><a href="#5-bluebook-physical-testing-ergonomics">5. Bluebook Physical Testing Ergonomics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#part-2-digital-sat-rw-700-master-strategy-cheatsheet-r2">PART 2: DIGITAL SAT RW 700+ MASTER STRATEGY &amp; CHEATSHEET (R2)</a><ul>
+<li><a href="#21-craft-structure-and-information-ideas">2.1 Craft &amp; Structure and Information &amp; Ideas</a><ul>
+<li><a href="#1-micro-passage-architecture-functional-sentence-tagging">1. Micro-Passage Architecture &amp; Functional Sentence Tagging</a><ul>
+<li><a href="#the-3-sentence-micro-mapping-routine">The 3-Sentence Micro-Mapping Routine:</a></li>
+</ul>
+</li>
+<li><a href="#2-the-four-fatal-distractor-traps-elimination-heuristics">2. The Four Fatal Distractor Traps &amp; Elimination Heuristics</a></li>
+<li><a href="#3-dual-passage-comparison-strategy-text-1-vs-text-2">3. Dual-Passage Comparison Strategy (Text 1 vs. Text 2)</a><ul>
+<li><a href="#the-dual-passage-3-step-execution-protocol">The Dual-Passage 3-Step Execution Protocol:</a></li>
+</ul>
+</li>
+<li><a href="#4-command-of-evidence-dual-filter-verification">4. Command of Evidence Dual-Filter Verification</a><ul>
+<li><a href="#a-command-of-evidence-textual-hypothesis-testing">A. Command of Evidence: Textual (Hypothesis Testing)</a></li>
+<li><a href="#b-command-of-evidence-quantitative-data-graphics-tables-charts-scatterplots">B. Command of Evidence: Quantitative Data Graphics (Tables, Charts, Scatterplots)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#22-words-in-context-vocabulary-mastery">2.2 Words in Context &amp; Vocabulary Mastery</a><ul>
+<li><a href="#1-the-3-step-execution-protocol-cover-predict-match">1. The 3-Step Execution Protocol: "Cover, Predict, Match"</a></li>
+<li><a href="#2-context-clue-decoding-mechanics">2. Context-Clue Decoding Mechanics</a></li>
+<li><a href="#3-high-frequency-morphology-master-reference">3. High-Frequency Morphology Master Reference</a><ul>
+<li><a href="#a-27-essential-high-frequency-prefixes">A. 27 Essential High-Frequency Prefixes</a></li>
+<li><a href="#b-21-essential-high-frequency-roots">B. 21 Essential High-Frequency Roots</a></li>
+<li><a href="#c-high-frequency-suffix-decoders">C. High-Frequency Suffix Decoders</a></li>
+</ul>
+</li>
+<li><a href="#4-the-40-essential-hard-module-dsat-vocabulary-words">4. The 40 Essential Hard-Module dSAT Vocabulary Words</a></li>
+</ul>
+</li>
+<li><a href="#23-standard-english-conventions-zero-tolerance-cheat-card">2.3 Standard English Conventions: Zero-Tolerance Cheat Card</a><ul>
+<li><a href="#1-clause-architecture-independent-vs-dependent">1. Clause Architecture: Independent vs. Dependent</a></li>
+<li><a href="#2-the-seven-inviolable-sentence-boundary-formulas">2. The Seven Inviolable Sentence Boundary Formulas</a><ul>
+<li><a href="#fatal-clause-violations">Fatal Clause Violations:</a></li>
+</ul>
+</li>
+<li><a href="#3-semicolon-period-equivalence-elimination-rule">3. Semicolon &amp; Period Equivalence Elimination Rule</a></li>
+<li><a href="#4-colons-vs-single-em-dashes">4. Colons (:) vs. Single Em-Dashes (—)</a></li>
+<li><a href="#5-symmetrical-punctuation-for-parenthetical-elements">5. Symmetrical Punctuation for Parenthetical Elements</a></li>
+<li><a href="#6-restrictive-vs-non-essential-modifiers-names-titles-and-that-vs-which">6. Restrictive vs. Non-Essential Modifiers: Names, Titles, and That vs. Which</a><ul>
+<li><a href="#a-names-and-proper-nouns-the-binary-choice-rule">A. Names and Proper Nouns (The Binary Choice Rule)</a></li>
+<li><a href="#b-that-vs-which">B. "That" vs. "Which"</a></li>
+</ul>
+</li>
+<li><a href="#7-the-six-inviolable-zero-punctuation-zones">7. The Six Inviolable Zero-Punctuation Zones</a></li>
+<li><a href="#8-subject-verb-agreement-mechanics">8. Subject-Verb Agreement Mechanics</a></li>
+<li><a href="#9-pronoun-antecedent-agreement-ambiguity">9. Pronoun-Antecedent Agreement &amp; Ambiguity</a></li>
+<li><a href="#10-modifier-placement-dangling-and-misplaced-modifiers">10. Modifier Placement: Dangling and Misplaced Modifiers</a></li>
+</ul>
+</li>
+<li><a href="#24-transitions-rhetorical-synthesis">2.4 Transitions &amp; Rhetorical Synthesis</a><ul>
+<li><a href="#1-rhetorical-synthesis-bullet-point-questions-the-30-second-algorithm">1. Rhetorical Synthesis (Bullet Point Questions): The 30-Second Algorithm</a><ul>
+<li><a href="#the-unfamiliar-audience-pattern">The "Unfamiliar Audience" Pattern:</a></li>
+</ul>
+</li>
+<li><a href="#2-transitions-mastery-the-relationship-categorization-matrix">2. Transitions Mastery: The Relationship Categorization Matrix</a></li>
+<li><a href="#3-high-yield-transition-elimination-heuristics">3. High-Yield Transition Elimination Heuristics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#part-3-digital-sat-math-780800-master-strategy-desmos-mastery-r3">PART 3: DIGITAL SAT MATH 780–800 MASTER STRATEGY &amp; DESMOS MASTERY (R3)</a><ul>
+<li><a href="#31-desmos-advanced-exploitation-cheatsheet-ready-to-use">3.1 Desmos Advanced Exploitation Cheatsheet (Ready-to-Use)</a><ul>
+<li><a href="#1-the-step-by-step-table-fitting-algorithm">1. The Step-by-Step Table Fitting Algorithm</a></li>
+<li><a href="#2-the-slider-system-for-parameter-exploration-k">2. The Slider System for Parameter Exploration ($k$)</a></li>
+<li><a href="#3-direct-inspection-mechanics">3. Direct Inspection Mechanics</a></li>
+<li><a href="#4-inequalities-feasible-regions">4. Inequalities &amp; Feasible Regions</a></li>
+<li><a href="#5-conversion-angle-mode-arithmetic-syntax">5. Conversion, Angle Mode &amp; Arithmetic Syntax</a></li>
+<li><a href="#6-desmos-pitfalls-failure-modes-mitigation">6. Desmos Pitfalls, Failure Modes &amp; Mitigation</a></li>
+</ul>
+</li>
+<li><a href="#32-hard-module-2-math-trap-taxonomy">3.2 Hard Module 2 Math Trap Taxonomy</a><ul>
+<li><a href="#trap-1-difference-of-squares-product-of-roots">Trap 1: Difference of Squares &amp; Product of Roots</a></li>
+<li><a href="#trap-2-radical-equations-extraneous-solution-domain-constraints">Trap 2: Radical Equations &amp; Extraneous Solution Domain Constraints</a></li>
+<li><a href="#trap-3-non-linear-system-intersections-discriminant-analysis">Trap 3: Non-Linear System Intersections &amp; Discriminant Analysis</a></li>
+<li><a href="#trap-4-advanced-circle-equations">Trap 4: Advanced Circle Equations</a></li>
+<li><a href="#trap-5-advanced-geometry-trigonometry">Trap 5: Advanced Geometry &amp; Trigonometry</a></li>
+<li><a href="#trap-6-linear-system-parameter-alignment-a-k">Trap 6: Linear System Parameter Alignment ($a, k$)</a></li>
+</ul>
+</li>
+<li><a href="#33-time-management-careless-error-prevention">3.3 Time Management &amp; Careless Error Prevention</a><ul>
+<li><a href="#1-pacing-algorithms-module-1-vs-module-2">1. Pacing Algorithms: Module 1 vs. Module 2</a></li>
+<li><a href="#2-strategic-two-pass-question-ordering">2. Strategic Two-Pass Question Ordering</a></li>
+<li><a href="#3-the-bc-pivot-backsolving-protocol">3. The "B/C Pivot" Backsolving Protocol</a></li>
+<li><a href="#4-the-scratchpad-target-box-protocol">4. The Scratchpad "Target Box" Protocol</a></li>
+<li><a href="#5-bluebook-spr-mechanics-negative-entry-capability">5. Bluebook SPR Mechanics: Negative Entry Capability</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#part-4-error-log-active-recall-architecture-r4">PART 4: ERROR LOG &amp; ACTIVE RECALL ARCHITECTURE (R4)</a><ul>
+<li><a href="#41-the-4-tier-diagnostic-classification-scheme">4.1 The 4-Tier Diagnostic Classification Scheme</a><ul>
+<li><a href="#production-ready-error-log-schema-notion-spreadsheet-data-dictionary">Production-Ready Error Log Schema (Notion / Spreadsheet Data Dictionary)</a></li>
+</ul>
+</li>
+<li><a href="#42-the-rule-of-3-re-solving-protocol">4.2 The "Rule of 3" Re-Solving Protocol</a></li>
+<li><a href="#43-the-final-14-day-error-cycle-schedule-liquidation-protocol">4.3 The Final 14-Day Error Cycle Schedule (Liquidation Protocol)</a></li>
+</ul>
+</li>
+<li><a href="#master-checklist-for-test-day-execution">MASTER CHECKLIST FOR TEST DAY EXECUTION</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+        </div>
+    </aside>
+
+    <main>
+        <div class="header-bar">
+            <div class="doc-title-mini">Digital SAT 1500+ Master Playbook & Cheatsheet</div>
+            <div class="header-actions">
+                <button class="btn" onclick="toggleTheme()">🌓 Tema</button>
+                <button class="btn" onclick="window.print()">🖨️ PDF İndir</button>
+            </div>
+        </div>
+        <article id="content">
+            <h1 id="digital-sat-1500-master-playbook-the-definitive-strategy-execution-desmos-system">DIGITAL SAT 1500+ MASTER PLAYBOOK: THE DEFINITIVE STRATEGY, EXECUTION &amp; DESMOS SYSTEM</h1>
+<hr />
+<h2 id="executive-architecture-test-engine-specifications">EXECUTIVE ARCHITECTURE &amp; TEST ENGINE SPECIFICATIONS</h2>
+<p>The Digital SAT (dSAT) is not a digitized version of the paper SAT; it is a computer-adaptive, multistage psychometric assessment governed by Item Response Theory (IRT). Scoring in the 99th percentile (1500–1600) requires a fundamental departure from legacy preparation methods. Mastery of this exam demands a unified system: algorithmic pacing, automated Desmos calculator exploitation, deterministic grammar rules, micro-passage functional tagging, and an active recall error liquidation protocol.</p>
+<pre><code>+==================================================================================================+
+|                                DIGITAL SAT SECTION ARCHITECTURE                                  |
++=========================+====================+======================+============================+
+| Section                 | Operational Modules| Time per Module      | Total Questions / Time     |
++=========================+====================+======================+============================+
+| Reading &amp; Writing (RW)  | 2 Multistage Stages| 32 Minutes each      | 54 Questions / 64 Minutes  |
+| Math                    | 2 Multistage Stages| 35 Minutes each      | 44 Questions / 70 Minutes  |
+| Scheduled Break         | 1 Break            | 10 Minutes           | Between RW and Math        |
++=========================+====================+======================+============================+
+| TOTAL EXAM              | 4 Modules + Break  | 134 Minutes Testing  | 98 Questions (8 Pretest)   |
++=========================+====================+======================+============================+
+</code></pre>
+<h3 id="1-multistage-adaptive-engine-mechanics">1. Multistage Adaptive Engine Mechanics</h3>
+<ul>
+<li><strong>Module 1 (Routing Engine)</strong>: Contains an evenly distributed blend of Easy, Medium, and Hard operational questions. Student accuracy on Module 1 determines routing to either the Easy or Hard version of Module 2.</li>
+<li><strong>Routing Thresholds</strong>:</li>
+<li><strong>Reading &amp; Writing</strong>: Achieving the Hard Module 2 requires correctly answering approximately $18\text{ to }19$ out of 27 operational questions in Module 1 (~67–70%).</li>
+<li><strong>Math</strong>: Achieving the Hard Module 2 requires correctly answering approximately $13\text{ to }15$ out of 22 operational questions in Module 1 (~60–68%).</li>
+<li><strong>The Ceiling Penalty (Easy Module 2 Lockout)</strong>:</li>
+<li>Routing to Easy Module 2 mathematically caps your scaled section score:<ul>
+<li>Reading &amp; Writing Easy Module 2 cap: <strong>~650–670</strong>.</li>
+<li>Math Easy Module 2 cap: <strong>~590–620</strong>.</li>
+</ul>
+</li>
+<li><strong>Mathematical Reality</strong>: A student routed to Easy Module 2 who subsequently answers every single question in Module 2 correctly <strong>CANNOT</strong> achieve a 1500+ composite score. Securing Hard Module 2 is an inviolable prerequisite.</li>
+</ul>
+<h3 id="2-pretest-unscored-questions">2. Pretest / Unscored Questions</h3>
+<ul>
+<li>Every Digital SAT administration embeds exactly <strong>2 unscored pretest questions per module</strong> (4 in RW, 4 in Math, 8 total across the exam).</li>
+<li>Pretest items are indistinguishable from operational questions and are distributed randomly across difficulty bands.</li>
+<li><strong>Strategic Imperative</strong>: Because pretest items cannot be identified with statistical certainty, every single question must be treated as fully operational and scored. Never gamble testing time on guessing whether a difficult question is experimental.</li>
+</ul>
+<h3 id="3-item-response-theory-irt-scoring-asymmetry">3. Item Response Theory (IRT) Scoring Asymmetry</h3>
+<p>Unlike linear tests where every question carries identical weight (e.g., $+1$ point raw), the Digital SAT evaluates performance using two-parameter and three-parameter IRT models:
+- <strong>Easy/Medium Question Penalty</strong>: Missing an Easy question in Module 1 or early Module 2 severely degrades your latent trait ability estimate ($\theta$), resulting in a disproportionate point deduction (up to $20\text{–}30$ scaled points lost for a single careless error).
+- <strong>Hard Module 2 Forgiveness</strong>: In Hard Module 2, questions possess high discrimination parameters. A test-taker can miss 2 to 3 ultra-hard questions in Module 2 and still achieve a <strong>770–790</strong> in Math or RW, provided their Easy and Medium baselines are 100% clean.
+- <strong>Core Axiom</strong>: <em>The 1500+ scorer is defined not by getting impossible questions right, but by achieving 100% surgical accuracy on Easy and Medium questions.</em></p>
+<hr />
+<h2 id="part-1-exhaustive-community-scorer-mining-r1">PART 1: EXHAUSTIVE COMMUNITY &amp; SCORER MINING (R1)</h2>
+<h3 id="11-the-1500-scorer-resource-tier-list-s-tier-to-c-tier">1.1 The 1500+ Scorer Resource Tier List (S-Tier to C-Tier)</h3>
+<p>Third-party test preparation companies frequently fail on the Digital SAT because they reuse legacy paper-test questions or fail to replicate the psychometric constraints of College Board's question engine. This tier list reflects the forensic consensus of verified 1500–1600 scorers, Reddit <code>r/Sat</code> debriefs, and elite educators.</p>
+<pre><code>+========================================================================================================================+
+|                                    DIGITAL SAT RESOURCE TIER LIST (S-TIER TO C-TIER)                                   |
++======+==============================+=============+==================+=================================================+
+| Tier | Resource                     | Target Range| Best Usage Phase | Primary Utility &amp; Core Strengths                |
++======+==============================+=============+==================+=================================================+
+|  S   | Bluebook Practice Tests 1–6  | All Ranges  | Diagnostic, Mid, | 100% authentic adaptive UI, timing, and IRT     |
+|      | (Official College Board)     | (1000–1600) | Final Benchmarks | scoring engine. Tests 5 &amp; 6 reflect modern M2.  |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  S   | College Board Educator       | 1350–1600   | Phase 2 &amp; 3      | 3,000+ authentic items. Isolate Hard Module 2   |
+|      | Question Bank (Filtered)     |             | (Targeted Drill) | questions by domain. Must use spoiler toggle!   |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  S   | Erica Meltzer: SAT Grammar   | RW 600–800  | Phase 1 &amp; 2      | Codifies grammar into mechanical formulas.      |
+|      | &amp; The Critical Reader        |             | (Foundation/M2)  | Eliminates &quot;sounds right&quot; reading intuition.    |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  S   | PrepPros Digital SAT Math    | Math 650–800| Phase 2 &amp; 3      | Bridges standard math to Hard Module 2 traps.   |
+|      | (Matthew Stroup) + 150 Hard  |             | (Kill Questions) | Dual algebraic + Desmos step-by-step solutions. |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  S   | Khan Academy Official        | 1100–1500   | Phase 1          | Diagnostic quizzes and foundational refreshers. |
+|      | Digital SAT (Advanced Units) |             | (Core Alignment) | Official partnership; excellent for math gaps.  |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  A   | UWorld Digital SAT QBank     | 1350–1550+  | Phase 2 &amp; 3      | Pristine digital UI; visual step-by-step        |
+|      |                              |             | (Volume Drill)   | answer rationales; customizable difficulty.     |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  A   | Tutorllini Test Prep         | Math 600–800| Phase 1 through  | Masterclass in Desmos regressions, parameter    |
+|      | (YouTube &quot;800 Club&quot; &amp; Desmos)|             | Test Day         | sliders, and graphical equation bypassing.      |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  A   | 1600.io (Orange Book &amp;       | Math 600–780| Phase 1 &amp; 2      | Uncompromising algebraic rigor and first-       |
+|      | Digital Math Tools / Wood)   |             | (Concept Gaps)   | principles problem solving.                     |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  A   | Scalar Learning              | Math 700–800| Phase 2 &amp; 3      | Real-time pacing demonstrations, mental math    |
+|      | (Huzefa Kapadia Live Solves) |             | (Speed Tactics)  | shortcuts, and calm triage under pressure.      |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  A   | Hayden Rhodea                | 1300–1550   | Phase 1 &amp; 3      | Actionable operational frameworks, pacing       |
+|      | (YouTube Digital Strategies) |             | (Frameworks)     | roadmaps, and high-yield grammar checklists.    |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  B   | College Panda Digital SAT    | 1250–1450   | Phase 1 &amp; 2      | High-density mechanical skill drills. Slightly  |
+|      | (Math &amp; Writing / Phu)       |             | (Skill Drills)   | less integrated with Desmos workflows.          |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  B   | Princeton Review dSAT Tests  | 1100–1400   | Phase 2 (Extra)  | Extra endurance practice; uncalibrated curves   |
+|      |                              |             |                  | and occasionally ambiguous reading logic.       |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  B   | Kaplan Digital SAT Prep      | 1000–1300   | Phase 1          | Friendly baseline introduction; questions       |
+|      |                              |             | (Beginners Only) | lack Hard Module 2 trap depth.                  |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  C   | Legacy Barron's SAT Books    | N/A         | AVOID            | Obsolete 80-line reading passages; manual       |
+|      | (Paper / Early Hybrid)       |             |                  | algebraic calculations that waste stamina.      |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  C   | Pre-2023 Real Paper QAS Tests| Math Only   | AVOID FOR RW     | Reading is completely obsolete. Math lacks      |
+|      |                              | (Partial)   |                  | Desmos dynamics and digital question stems.     |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  C   | Magoosh / McGraw-Hill SAT    | N/A         | AVOID            | Generic questions failing to match College      |
+|      |                              |             |                  | Board phrasing; superficial explanations.       |
++------+------------------------------+-------------+------------------+-------------------------------------------------+
+|  C   | Uncurated PDF Dumps / Leaks  | N/A         | AVOID            | Rampant OCR corruptions, incorrect answer keys, |
+|      | (Discord / Telegram sets)    |             |                  | and unverified paper-test contaminations.       |
++======+==============================+=============+==================+=================================================+
+</code></pre>
+<h4 id="detailed-resource-evaluations-pitfall-warnings">Detailed Resource Evaluations &amp; Pitfall Warnings</h4>
+<h5 id="1-official-college-board-bluebook-practice-tests-16">1. Official College Board Bluebook Practice Tests 1–6</h5>
+<ul>
+<li><strong>Difficulty Divergence (Tests 1–4 vs. Tests 5–6)</strong>:</li>
+<li>Tests 1–4 were published in late 2022/early 2023. Their Module 2 sections have forgiving curves and moderate complexity.</li>
+<li>Tests 5 and 6 (released in 2024) reflect the hardened reality of modern administrations.</li>
+<li><em>Test 6 RW Hard Module 2</em> introduces dense philosophical, sociological, and poetic stimuli with college-level Tier-2 vocabulary.</li>
+<li><em>Test 6 Math Hard Module 2</em> features nested functions with unknown constants, non-linear system intersections, and complex coordinate geometry.</li>
+<li><strong>Empirical Reality</strong>: Test-takers report an average score drop of <strong>40 to 120 points</strong> when transitioning from Tests 1–4 to Tests 5–6. Treat Tests 5 and 6 as your non-negotiable benchmark indicators.</li>
+<li><strong>The Fatal Pitfall</strong>: Burning through all 6 Bluebook exams in the first 4 weeks without deep error logging. Bluebook tests are measurement tools, not teaching tools. Once exhausted, authentic adaptive benchmarking is permanently lost.</li>
+</ul>
+<h5 id="2-college-board-educator-question-bank-the-spoiler-prevention-protocol">2. College Board Educator Question Bank: The Spoiler Prevention Protocol</h5>
+<ul>
+<li>Contains over 3,000 real College Board test items categorized by domain, skill, and difficulty rating (Easy, Medium, Hard).</li>
+<li><strong>CRITICAL OPERATIONAL SPOILER PROTOCOL</strong>:</li>
+<li>The Question Bank contains the exact operational questions used in Bluebook Practice Tests 1–6.</li>
+<li>If you drill the Question Bank with default settings, you will memorize Bluebook questions in advance. When you subsequently take Bluebook Tests 1–6, your practice score will be <strong>artificially inflated by 50 to 100 points</strong>, masking lethal weaknesses.</li>
+<li><strong>Mandatory Configuration</strong>: You MUST check the checkbox labeled <strong><code>"Exclude Active Questions"</code></strong> before running any search or export. This filters out all items active in Bluebook Tests 1–6 while retaining thousands of authentic retired items for practice.</li>
+</ul>
+<pre><code>┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                   COLLEGE BOARD QUESTION BANK FILTER SETUP (MANDATORY)                          │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  Domain:     [X] Reading and Writing    [ ] Math                                                 │
+│  Skill:      [X] Form, Structure, and Sense -&gt; Boundaries                                        │
+│  Difficulty: [ ] Easy    [X] Medium    [X] Hard                                                  │
+│                                                                                                  │
+│  SECURITY TOGGLE:                                                                                │
+│  [X] EXCLUDE ACTIVE QUESTIONS  &lt;--- MUST BE CHECKED TO PREVENT BLUEBOOK SPOILERS!                │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h5 id="3-erica-meltzer-the-ultimate-guide-to-sat-grammar-the-critical-reader">3. Erica Meltzer: The Ultimate Guide to SAT Grammar &amp; The Critical Reader</h5>
+<ul>
+<li>The gold standard for Digital SAT Reading &amp; Writing.</li>
+<li>Meltzer demystifies College Board's reading passages by proving that Reading is not an artistic interpretation exercise, but a forensic search for direct textual evidence. Her grammar curriculum codifies punctuation into a finite set of mathematical laws.</li>
+<li><em>Pitfall</em>: Reading the books passively like a novel. You must actively complete the chapter exercises and translate each rule into your personal cheat sheets.</li>
+</ul>
+<h5 id="4-preppros-digital-sat-math-matthew-stroup">4. PrepPros Digital SAT Math (Matthew Stroup)</h5>
+<ul>
+<li>Built specifically to address the sharp difficulty spike of modern Hard Module 2s.</li>
+<li>Features the <em>150 Hardest Math Questions</em>, which systematically isolates the top 5% difficulty problems (geometric coordinate proofs, quadratic tangency discriminants, rational function asymptotes).</li>
+<li><em>Pitfall</em>: Attempting the <em>150 Hardest</em> set while still scoring below 650 in Math. Build core algebra mastery on Khan Academy first.</li>
+</ul>
+<h5 id="5-tutorllini-test-prep-youtube-desmos-playlist-800-club">5. Tutorllini Test Prep (YouTube Desmos Playlist &amp; "800 Club")</h5>
+<ul>
+<li>The definitive resource for weaponizing the embedded Desmos graphing calculator.</li>
+<li>Teaches how to convert complex multi-variable algebra into graphical intersections, slider parameter sweeps, and regressions, completing 3-minute problems in 20 seconds.</li>
+</ul>
+<hr />
+<h3 id="12-actionable-study-schedules-pacing-blueprints">1.2 Actionable Study Schedules &amp; Pacing Blueprints</h3>
+<h4 id="blueprint-1-the-3-month-standard-architecture-12-weeks-12501350-rightarrow-1530">Blueprint 1: The 3-Month Standard Architecture (12 Weeks — 1250/1350 $\rightarrow$ 1530+)</h4>
+<ul>
+<li><strong>Target Commitment</strong>: 10–12 hours per week.</li>
+<li>Weekdays: 1.5–2 hours/day (4 days/week).</li>
+<li>Saturday: 3–4 hours (timed mock or intensive review).</li>
+<li>Sunday: Full Cognitive Reset.</li>
+</ul>
+<pre><code>+==================================================================================================+
+|                       3-MONTH STANDARD BLUEPRINT TIMELINE (12 WEEKS)                             |
++==================================================================================================+
+| PHASE 1: DIAGNOSTIC &amp; STRUCTURAL FOUNDATIONS (Weeks 1–3)                                         |
+| - Week 1 Sat: Take Bluebook Practice Test 1 under strict timed conditions. Set Baseline.         |
+| - RW Focus: Erica Meltzer Grammar Chapters 1–7 (Clauses, Semicolons, Colons, Commas).            |
+| - Math Focus: Tutorllini Desmos Playlist (Videos 1–8: regressions, intersections, roots).        |
+| - Khan Academy: Diagnostic mastery on all Advanced Units. Initialize Error Log.                  |
+| - Daily Volume: 15–20 high-yield questions/day + 30 min deep error logging and concept review.   |
++--------------------------------------------------------------------------------------------------+
+| PHASE 2: DOMAIN MASTERY &amp; TACTICAL TOOLING (Weeks 4–7)                                           |
+| - Week 4 Sat: Take Bluebook Practice Test 2. Deep forensic analysis of errors.                   |
+| - RW Focus: Meltzer Critical Reader (Command of Evidence, Dual Passages, Micro-Mapping).         |
+| - Math Focus: PrepPros Math (Quadratic Systems, Circle Equations, Exponents, Similar Triangles). |
+| - Question Bank: Drill medium/hard items (Filtered: &quot;Exclude Active Questions&quot;).                 |
+| - Week 6 Sat: Take Bluebook Practice Test 3.                                                     |
+| - Daily Volume: 15–20 high-yield questions/day + 30 min deep error logging. Timed mini-sets Sat. |
++--------------------------------------------------------------------------------------------------+
+| PHASE 3: HARD MODULE 2 SPECIALIZATION &amp; PACING DRILLS (Weeks 8–10)                               |
+| - Week 8 Sat: Take Bluebook Practice Test 4.                                                     |
+| - RW Tactics: Lock in RW Reverse Navigation (Jump to Q15 first; clear Q15–27 in 12 min).         |
+| - Math Tactics: PrepPros 150 Hardest Math Questions (Set 1–75); Desmos speed-banking drills.     |
+| - Week 9 Sat: Take Bluebook Practice Test 5 (First hardened benchmark).                          |
+| - Week 10 Sat: Take Bluebook Practice Test 6 (Strict test-readiness benchmark).                  |
+| - Daily Volume: 15–20 high-yield questions/day strictly on Hard Module 2 items + 30m error log.  |
++--------------------------------------------------------------------------------------------------+
+| PHASE 4: ERROR LOG LIQUIDATION &amp; BIOLOGICAL PEAKING (Weeks 11–12)                                |
+| - Week 11: Re-solve every single missed problem from Tests 1–6 using the Rule of 3. Zero mocks.  |
+| - Week 12: Execute the 10-Day Peak Performance Protocol (circadian lock, nutrition, taper).      |
++==================================================================================================+
+</code></pre>
+<h4 id="blueprint-2-the-6-week-intensive-sprint-13801450-rightarrow-1530">Blueprint 2: The 6-Week Intensive Sprint (1380/1450 $\rightarrow$ 1530+)</h4>
+<ul>
+<li><strong>Target Commitment</strong>: 12–14 hours per week (1.5–2 hours/day weekdays, 3–4 hours Saturday mock + review). Calibrated for AP/IB high school students to ensure deep cognitive recovery and prevent burnout.</li>
+<li>Designed for high-scoring students stalled at the 1400 plateau who need tactical execution shifts.</li>
+</ul>
+<pre><code>+==================================================================================================+
+|                        6-WEEK INTENSIVE SPRINT TIMELINE (6 WEEKS)                                |
++==================================================================================================+
+| WEEK 1: Benchmark &amp; Tactical Tooling                                                             |
+| - Mon: Diagnostic Bluebook Test 1. Set baseline error inventory.                                 |
+| - Tue–Fri: Master Tutorllini Desmos regressions + Erica Meltzer Grammar punctuation formulas.    |
+| - Sat: Bluebook Test 2. Error log entry extraction. Weekday volume: 15–20 Qs/day + 30m review.   |
++--------------------------------------------------------------------------------------------------+
+| WEEK 2: Math Acceleration &amp; RW Elimination Speed                                                 |
+| - Math: PrepPros Hard Math Chapters + Question Bank Hard Algebra &amp; Advanced Math.                |
+| - RW: 30-second Rhetorical Synthesis shortcut drills + Transitions 7-category matrix.            |
+| - Sat: Bluebook Test 3. Weekday volume: 15–20 high-yield Qs/day (10 Math, 10 RW) + 30m review.   |
++--------------------------------------------------------------------------------------------------+
+| WEEK 3: Hard Module 2 Trap Taxonomy                                                              |
+| - Math: Discriminant analysis (Delta = b^2 - 4ac), circle constants, radical constraints.        |
+| - RW: Command of Evidence dual-filter drills (Textual &amp; Quantitative data graphics).             |
+| - Sat: Bluebook Test 4. Weekday volume: 15–20 high-yield Qs/day + 30 min deep error logging.     |
++--------------------------------------------------------------------------------------------------+
+| WEEK 4: Reverse Navigation &amp; Time-Banking Integration                                            |
+| - RW: Practice Reverse Navigation in timed 32-min blocks (Q15–27 in 12 min, Q1–14 in 20 min).    |
+| - Math: Practice Desmos Time-Banking (clear Q1–14 in 15 min, bank 20 min for Q15–22).            |
+| - Sat: Bluebook Test 5 (Hardened Module 2). Weekday volume: 15–20 targeted hard Qs/day + 30m log.|
++--------------------------------------------------------------------------------------------------+
+| WEEK 5: The Hardest Benchmark                                                                    |
+| - Mon–Fri: Drill PrepPros 150 Hardest Math; re-solve all flagged RW questions from Tests 1–5.    |
+| - Sat (Day -7): Bluebook Test 6 under 100% authentic test conditions. Daily volume: 15–20 Qs/day.|
++--------------------------------------------------------------------------------------------------+
+| WEEK 6: Taper &amp; Execution Priming                                                                |
+| - Mon–Tue: Cut volume to 10–15 Qs/day (Rule of 3 re-solves). Deep mental consolidation.          |
+| - Wed–Thu: 8–10 Qs/day (review Desmos cheatsheet &amp; grammar cheat card).                          |
+| - Fri (Day -1): STUDY BLACKOUT. Zero questions. Physical reset.                                  |
+| - Sat (Day 0): Test Day — 1500+ Execution.                                                       |
++==================================================================================================+
+</code></pre>
+<h4 id="blueprint-3-the-2-week-emergency-cram-14-day-triage-rapid-60100-point-lift">Blueprint 3: The 2-Week Emergency Cram (14-Day Triage — Rapid 60–100 Point Lift)</h4>
+<ul>
+<li><strong>Target Commitment</strong>: 2.5–3 hours per day. Triage mode: Eliminate all low-yield reading; execute mechanical score multipliers only. Spaced test architecture decouples Tests 5 and 6 by a full 6 days.</li>
+</ul>
+<pre><code>+==================================================================================================+
+|                        2-WEEK EMERGENCY CRAM PROTOCOL (14 DAYS)                                  |
++==================================================================================================+
+| Day 1 (Day -14): Initial Benchmark: Take Bluebook Test 5 (Timed, authentic conditions).          |
+| Day 2 (Day -13): Forensic Dissection of Test 5 (Spend 3 hours mapping visual clues for misses).  |
+| Day 3 (Day -12): Grammar Zero-Tolerance Mastery (Learn 7 boundary formulas; drill 15–20 Qs).     |
+| Day 4 (Day -11): Desmos Weaponization Sprint (Regressions, sliders, intersections; 15–20 Qs).    |
+| Day 5 (Day -10): Transitions &amp; Rhetorical Synthesis Speed-Run (True twins; 30-sec protocol).     |
+| Day 6 (Day -9):  Advanced Math Kill-Questions Drilling (Vertex form, discriminants; 15 hard Qs). |
+| Day 7 (Day -7):  Final Benchmark: Take Bluebook Test 6 (Strict timing, authentic conditions).    |
+| Day 8 (Day -6):  Dissection of Test 6 &amp; Error Bank Assembly (Extract every missed rule).         |
+| Days 9-10 (Days -5 to -4): High-Yield Error Re-Solving (Rule of 3 on blank paper; 15 Qs/day).    |
+| Day 11 (Day -3): Reverse Navigation Rehearsal (Run 1 timed 32-min RW module starting at Q15).    |
+| Day 12 (Day -2): Light Review (Cut volume 50%; 10 medium questions; Desmos formula review).      |
+| Day 13 (Day -1): Logistics &amp; Confidence Priming (5 easy Math, 5 easy RW; pack mouse, transit).   |
+| Day 14 (Day 0):  TEST DAY (Execute reverse navigation, Desmos time-banking, 5-sec sanity check). |
++==================================================================================================+
+</code></pre>
+<hr />
+<h3 id="13-breaking-the-14001450-plateau">1.3 Breaking the 1400–1450 Plateau</h3>
+<h4 id="1-root-cause-analysis-1400-knowledge-vs-1500-execution">1. Root Cause Analysis: 1400 Knowledge vs. 1500+ Execution</h4>
+<p>A student scoring 1420 possesses roughly 95% of the same conceptual math and grammar knowledge as a 1550 scorer. The plateau is almost never a knowledge deficit; it is an <strong>operational and behavioral deficit</strong>.</p>
+<pre><code>+==================================+==================================+
+| 1400–1450 Scorer Profile         | 1500–1600 Scorer Profile         |
++==================================+==================================+
+| Solves linearly (Q1 -&gt; Q27).     | Reverse-navigates RW; time-banks |
+| Exhausts stamina on reading      | Math via Desmos for Q15–22.      |
+| passages before reaching grammar.|                                  |
++----------------------------------+----------------------------------+
+| Chooses reading answers that     | Eliminates 3 choices based on    |
+| &quot;sound plausible&quot; or half-right. | explicit text refutations.       |
++----------------------------------+----------------------------------+
+| Relies on manual algebra;        | Dual-solves: algebraic intuition |
+| vulnerable to arithmetic slips.  | backed by 15-second Desmos check.|
++----------------------------------+----------------------------------+
+| Misses 2–3 easy/medium questions | 100% surgical on easy/medium;    |
+| in M1, crushing IRT score.       | absorbs IRT-forgiven hard misses.|
++----------------------------------+----------------------------------+
+| Reviews tests by reading answer  | Re-solves missed problems 3      |
+| keys passively (&quot;Oh, I get it&quot;). | times unassisted over 10 days.   |
++==================================+==================================+
+</code></pre>
+<h4 id="2-the-four-deadly-traps-keeping-scorers-under-1500">2. The Four Deadly Traps Keeping Scorers Under 1500</h4>
+<ol>
+<li><strong>The Item Response Theory (IRT) Asymmetry Trap</strong>:</li>
+<li><em>The Danger</em>: In an adaptive test, easy questions carry massive negative penalties. Missing two simple linear equations in Module 1 can drop your maximum possible Math score to 740, even if you solve every brutal question in Module 2 correctly.</li>
+<li><em>The Protocol</em>: Implement the <strong>Two-Pass Discipline</strong>. Never rush the first 10 questions of Module 1. Double-check all arithmetic, negative signs, and units before proceeding.</li>
+<li><strong>The "Half-Right / Second-Half Fiction" Reading Trap</strong>:</li>
+<li><em>The Danger</em>: College Board distractor choices copy words verbatim from the passage in the first 8–10 words, then quietly insert an unwarranted causal claim or extreme adjective in the final words.</li>
+<li><em>The Protocol</em>: The <strong>95% Rule</strong>: If 95% of an answer choice is brilliant, but a single word is unsupported by the text, the choice is 100% wrong.</li>
+<li><strong>The Variable/Constraint Blindness Math Trap</strong>:</li>
+<li><em>The Danger</em>: The problem asks for the value of $2x + 1$, $x - y$, or $x/2$, but the student instinctively solves for $x$ and clicks the corresponding option (which is always Choice A or B).</li>
+<li><em>The Protocol</em>: The <strong>Scratchpad Target Box</strong>: Before writing any equation, write $\boxed{\text{ASK: } 2x + 1}$ on your scratch paper. Compare your final number against the box before clicking Next.</li>
+<li><strong>The Time-Sunk Fallacy</strong>:</li>
+<li><em>The Danger</em>: Spending 3.5 minutes battling a single stubborn geometry problem in Module 2, leaving only 45 seconds each for the final 3 questions (which were easily solvable).</li>
+<li><em>The Protocol</em>: The <strong>90-Second Ejection Seat</strong>: If you have made no concrete algebraic or Desmos headway after 60–90 seconds, flag the question, select a placeholder, and move on immediately. Return only after all other questions are banked.</li>
+</ol>
+<h4 id="3-hard-module-2-pacing-algorithms">3. Hard Module 2 Pacing Algorithms</h4>
+<h5 id="rw-hard-module-2-reverse-navigation-architecture">RW Hard Module 2: Reverse Navigation Architecture</h5>
+<p>Standard linear progression (Q1 $\rightarrow$ Q27) forces you to read dense vocabulary and long scientific texts while your brain is fresh, leaving grammar and transitions for the end when fatigue is high and the clock is flashing red. <strong>Reverse Navigation flips this dynamic</strong>:</p>
+<pre><code>+==================================================================================================+
+|                        RW HARD MODULE 2: REVERSE NAVIGATION (32 MIN)                             |
++==================================================================================================+
+| STAGE 1 (00:00 - 12:00) | THE GRAMMAR &amp; SYNTHESIS BLITZ (Q15–27)                                  |
+| - Skip Q1–14 immediately upon opening Module 2. Click Q15.                                       |
+| - Solve Standard English Conventions (Q15–22) and Transitions / Rhetorical Synthesis (Q23–27).   |
+| - These 13 questions are rule-governed and non-passage-dependent (~50 sec/question).             |
+| - Outcome: At minute 12:00, you have 13/27 questions banked with ZERO reading fatigue.           |
++--------------------------------------------------------------------------------------------------+
+| STAGE 2 (12:00 - 28:00) | HIGH-STAKES READING COMPREHENSION (Q1–14)                              |
+| - Return to Q1. Tackle Words in Context (Q1–4) in ~45 seconds each.                             |
+| - Tackle Information &amp; Ideas, Craft &amp; Structure, and Command of Evidence (Q5–14).                |
+| - You now have 13 full minutes for 10 reading passages (approx. 78 seconds per passage).         |
+| - Read calmly without time panic.                                                                |
++--------------------------------------------------------------------------------------------------+
+| STAGE 3 (28:00 - 32:00) | VERIFICATION &amp; FLAGGED REVIEW                                          |
+| - Review the 2–3 flagged questions. Verify vocabulary substitutions in context.                  |
++==================================================================================================+
+</code></pre>
+<h5 id="math-hard-module-2-desmos-first-time-banking-architecture">Math Hard Module 2: Desmos-First Time-Banking Architecture</h5>
+<p>In Hard Module 2, questions 18–22 often feature multi-step problem configurations. If you spend equal time on every question, you will run out of time on the hardest questions. Time-banking creates a 20-minute war chest:</p>
+<pre><code>+==================================================================================================+
+|                        MATH HARD MODULE 2: TIME-BANKING (35 MIN)                                 |
++==================================================================================================+
+| STAGE 1 (00:00 - 15:00) | THE SPEED CLEARANCE (Q1–14)                                            |
+| - Sweep through Q1–14 aggressively utilizing Desmos regressions, sliders, and intersections.     |
+| - Average pace: 50–60 seconds per question.                                                      |
+| - Outcome: At minute 15:00, you have 14 questions completed and 20 MINUTES REMAINING for 8 Qs.   |
++--------------------------------------------------------------------------------------------------+
+| STAGE 2 (15:00 - 30:00) | DISMANTLING THE 4–5 &quot;KILL QUESTIONS&quot; (Q15–22)                          |
+| - Tackle the multi-step problems (Q18–22). Allocate 2.5 to 3.5 minutes per question.            |
+| - Sketch coordinate geometry clearly. Use sliders to verify algebraic deductions.               |
+| - Deploy the 90-second ejection seat if stuck; return during Stage 3.                            |
++--------------------------------------------------------------------------------------------------+
+| STAGE 3 (30:00 - 35:00) | GRID-IN &amp; CONSTRAINT VERIFICATION                                      |
+| - Audit all Student-Produced Responses (SPRs).                                                   |
+| - Did the question ask for x, y, or x/y? Did it specify positive values only?                    |
+| - Verify rounding instructions (e.g., nearest hundredth).                                        |
++==================================================================================================+
+</code></pre>
+<hr />
+<h3 id="14-final-23-weeks-peak-performance-biological-protocol">1.4 Final 2–3 Weeks Peak Performance &amp; Biological Protocol</h3>
+<p>Test day execution is a biological event. Working memory, linguistic retrieval, and processing speed are heavily modulated by circadian rhythms, adenosine clearance, and blood glucose stability.</p>
+<h4 id="1-the-tapering-calendar-day-21-to-day-0">1. The Tapering Calendar (Day -21 to Day 0)</h4>
+<pre><code>[Day -21 to -15] High-Yield Targeted Sprints (15–20 Qs/day + deep error logging) + Bluebook Test 5 on Day -14.
+[Day -14 to -8]  Error Log Liquidation (15–20 Qs/day) + Final Full Mock: Bluebook Test 6 on Day -7 (8:00 AM).
+[Day -7]         TAKE BLUEBOOK PRACTICE TEST 6 (Final practice test). Strict conditions.
+[Day -6]         Full 3-hour forensic dissection of Test 6 errors.
+[Day -5]         Volume reduction: 12–15 targeted questions max (Rule of 3 re-solves).
+[Day -4]         Volume reduction: 10–12 targeted questions max (Grammar cheat card &amp; Desmos sheets).
+[Day -3]         Volume reduction: 8–10 questions max (Medium difficulty only; reinforce confidence).
+[Day -2]         Volume reduction: 5–8 questions max. Logistics check (Bluebook updated, test ticket).
+[Day -1]         STUDY BLACKOUT. ZERO QUESTIONS. Complete physical, emotional, and cognitive rest.
+[Day 0]          TEST DAY: 1500+ Execution.
+</code></pre>
+<h4 id="2-sleep-optimization-the-gradual-10-day-circadian-phase-shift">2. Sleep Optimization &amp; The Gradual 10-Day Circadian Phase Shift</h4>
+<ul>
+<li><strong>The Circadian Inertia Reality</strong>: The human brain requires <strong>90 to 120 minutes</strong> post-waking to clear adenosine and sleep inertia. If you wake up at 7:00 AM for an 8:00 AM exam, your prefrontal cortex will operate at ~70% capacity during RW Module 1.</li>
+<li><strong>The Gradual 10-Day Circadian Phase Shift</strong>: Shifting bedtime abruptly from 12:00 AM to 10:00 PM induces adolescent sleep-onset insomnia due to physiological circadian phase delay. Instead of an abrupt change, execute a gradual <strong>15-minute phase advance over 10 days</strong>:</li>
+<li><strong>Days -10 to -8</strong>: Bedtime 11:30 PM $\rightarrow$ Wake-up 7:15 AM.</li>
+<li><strong>Days -7 to -5</strong>: Bedtime 11:00 PM $\rightarrow$ Wake-up 6:45 AM.</li>
+<li><strong>Days -4 to -2</strong>: Bedtime 10:30 PM $\rightarrow$ Wake-up 6:15 AM.</li>
+<li><strong>Days -1 to 0</strong>: Bedtime 10:00 PM $\rightarrow$ Wake-up 6:00 AM (Circadian lock achieved naturally with zero sleep-onset anxiety).</li>
+<li><strong>Evening Screen Taper</strong>: Cut blue light 60 minutes before bed (switch devices to Night Shift and read physical print).</li>
+<li><strong>The Sleep Debt Buffer Theory</strong>: Friday night nervousness frequently causes fragmented sleep (5–6 hours). Medical research confirms that <em>a single night of sub-optimal sleep does not impair cognitive performance IF the individual has accumulated a deep sleep buffer over the prior 7 nights</em>. Treat <strong>Thursday night's sleep</strong> as your actual "test night" sleep. Aim for 8.5–9 hours from Day -7 through Day -2.</li>
+</ul>
+<h4 id="3-test-day-nutrition-blood-glucose-stability-protocol">3. Test-Day Nutrition &amp; Blood-Glucose Stability Protocol</h4>
+<ul>
+<li><strong>The Glucose Crash Mechanism</strong>: The brain consumes 20% of resting metabolic energy. Simple sugars (cereals, pop-tarts, pancakes, orange juice) trigger a rapid insulin surge followed by hypoglycemia 90–120 minutes later—precisely when you begin Math Module 1.</li>
+<li><strong>The Optimal 1500+ Breakfast (6:30 AM)</strong>:</li>
+<li>High protein + healthy slow-burning fats + complex low-glycemic carbohydrates:<ul>
+<li>3 scrambled or boiled eggs (protein &amp; choline for acetylcholine neurotransmitter synthesis).</li>
+<li>1 slice of whole-grain sourdough toast with avocado or almond butter.</li>
+<li>Handful of blueberries or a bowl of steel-cut oatmeal.</li>
+<li>350 ml water.</li>
+</ul>
+</li>
+<li><strong>The 10-Minute Break Bio-Fuel Protocol</strong>:</li>
+<li>Between RW Module 2 and Math Module 1, there is a mandatory 10-minute break.</li>
+<li><strong>Snack</strong>: Half a green-tipped banana (potassium and steady fructose) + 2 squares of 85% dark chocolate (flavanols enhance cerebral blood flow and focus) + handful of walnuts.</li>
+<li><strong>Hydration</strong>: 150 ml water with a pinch of electrolytes. Do not chug water (prevents bladder distraction during timed Math modules).</li>
+<li><strong>Physical Reset</strong>: Exit the testing room immediately. Do NOT discuss questions with peers. Walk briskly, stretch your shoulders, and do 5 physiological sighs (double inhale through nose, long slow exhale through mouth) to dump cortisol.</li>
+<li><strong>Caffeine Guidelines</strong>:</li>
+<li>Non-coffee drinkers: Absolutely ZERO caffeine on test day (induces anxiety and tremors).</li>
+<li>Habitual coffee drinkers: Consume your standard baseline cup (no more, no less) with breakfast at 6:30 AM. Avoid energy drinks (Celsius, Red Bull), which contain excessive synthetic stimulants that cause rapid crashes.</li>
+</ul>
+<h4 id="4-cognitive-priming-neural-warm-up-transit-protocol-test-day-0600-0745-am">4. Cognitive Priming Neural Warm-Up &amp; Transit Protocol (Test Day 06:00 – 07:45 AM)</h4>
+<p>Athletes do not sprint without warming up their muscles. An elite student must never allow Question 1 of the real SAT to be their first mental exercise of the day. Crucially, allow an unhurried transit buffer to avoid cortisol spikes from traffic or check-in queues:
+- <strong>06:00 AM</strong>: Wake up, splash cold water on face, hydrate with 300 ml water.
+- <strong>06:30 AM</strong>: Balanced low-glycemic protein breakfast.
+- <strong>06:50 – 07:05 AM — The 15-Minute Neural Priming Warm-Up</strong>:
+  - Sit down with physical paper:
+    1. Read 1 dense academic paragraph (from <em>The Economist</em>, <em>Scientific American</em>, or an Erica Meltzer passage). Read for tone and thesis.
+    2. Solve 2 familiar, previously solved algebra/quadratic questions on scratch paper or Desmos.
+    3. Solve 2 standard grammar punctuation questions (e.g., semicolon vs. colon).
+  - <strong>INVIOLABLE RULE</strong>: <strong>DO NOT SOLVE NEW PROBLEMS AND DO NOT CHECK UNCERTAIN ANSWERS</strong>. The purpose is strictly to activate linguistic and numerical neural circuits, clearing sleep inertia before entering the testing center.
+- <strong>07:10 AM — Depart for Test Center</strong>:
+  - Depart promptly at 7:10 AM to guarantee a 35-minute transit, navigation, and parking buffer before 7:45 AM arrival.
+- <strong>07:45 AM — Test Center Arrival &amp; Check-In</strong>:
+  - Arrive at the test center calm, primed, and fully alert with 15 minutes to spare before doors lock at 8:00 AM.</p>
+<h4 id="5-bluebook-physical-testing-ergonomics">5. Bluebook Physical Testing Ergonomics</h4>
+<ul>
+<li><strong>Hardware Rehearsal</strong>: Take all practice tests on the exact laptop or tablet you will bring to the test center. Verify that the Bluebook app is updated to the latest build.</li>
+<li><strong>External Mouse Mandate</strong>: <strong>ALWAYS USE AN EXTERNAL MOUSE</strong> rather than a laptop trackpad. An external mouse increases text selection speed, UI navigation, and Desmos curve clicking by 15–20%, saving an estimated 2 to 3 minutes per module.</li>
+<li><strong>Quadrant Scratch Paper Method</strong>: You will receive 3 sheets of scratch paper. Before the exam begins, fold each sheet into 4 quadrants (producing 8 numbered rectangular boxes per sheet). Keep calculations strictly within their numbered boxes. This prevents arithmetic cross-contamination and allows instant verification during review sweeps.</li>
+</ul>
+<hr />
+<h2 id="part-2-digital-sat-rw-700-master-strategy-cheatsheet-r2">PART 2: DIGITAL SAT RW 700+ MASTER STRATEGY &amp; CHEATSHEET (R2)</h2>
+<h3 id="21-craft-structure-and-information-ideas">2.1 Craft &amp; Structure and Information &amp; Ideas</h3>
+<h4 id="1-micro-passage-architecture-functional-sentence-tagging">1. Micro-Passage Architecture &amp; Functional Sentence Tagging</h4>
+<p>Digital SAT reading passages are compressed stimuli ranging from 25 to 150 words. There is no space for filler. Top scorers execute <strong>Functional Sentence Tagging</strong>:</p>
+<pre><code>Sentence 1: [CONTEXT / STATUS QUO]  --&gt; What is the established belief or baseline fact?
+Sentence 2: [PIVOT / COUNTER-CLAIM] --&gt; Does the author shift? (Look for: However, Yet, But)
+Sentence 3: [CORE CLAIM / HYPOTHESIS]--&gt; What is the author's primary assertion or finding?
+Sentence 4: [EVIDENCE / NUANCE]      --&gt; What data, qualification, or experiment supports it?
+</code></pre>
+<h5 id="the-3-sentence-micro-mapping-routine">The 3-Sentence Micro-Mapping Routine:</h5>
+<ol>
+<li><strong>Find the Anchor Sentence</strong>:</li>
+<li>In ~85% of science and social science passages, the core claim is located immediately following a pivot transition (<em>However, Yet, In contrast, Nonetheless</em>) or in the very final sentence as a concluding takeaway.</li>
+<li>If there is no pivot transition, Sentence 1 is almost always the overarching topic claim.</li>
+<li><strong>Isolate the Subject-Verb Core</strong>:</li>
+<li>Mentally strip away all non-essential clauses, prepositional phrases, and parentheticals to see who is doing what to whom.</li>
+<li><strong>Valence Polarity Tagging</strong>:</li>
+<li>Assign the passage an emotional valence tag: <code>[+ Positive / Supportive]</code>, <code>[- Critical / Skeptical]</code>, or <code>[~ Neutral / Descriptive]</code>. Any answer choice whose tone or valence contradicts this tag must be eliminated immediately.</li>
+</ol>
+<h4 id="2-the-four-fatal-distractor-traps-elimination-heuristics">2. The Four Fatal Distractor Traps &amp; Elimination Heuristics</h4>
+<pre><code>+========================================================================================================================+
+|                                     THE FOUR FATAL READING DISTRACTOR TRAPS                                            |
++==============================+=======================================+=================================================+
+| Trap Pattern                 | Detection Signpost                    | Elimination Heuristic                           |
++==============================+=======================================+=================================================+
+| 1. Half-Right /              | Starts with verbatim text words, but  | &quot;The 95% Rule&quot;: If 95% is accurate but one     |
+|    Second-Half Fiction       | slips in an unsupported cause/motive. | adjective or connector is unsupported, it's 0%.|
++------------------------------+---------------------------------------+-------------------------------------------------+
+| 2. Too Extreme /             | Converts hedged text (suggests, may)  | &quot;Hedge Matching&quot;: Hedged passage requires       |
+|    Scope Inflation           | into absolutes (proves, always, sole).| hedged answer (is associated with, might).      |
++------------------------------+---------------------------------------+-------------------------------------------------+
+| 3. Opposite /                | Inverts the causal arrow; swaps who   | &quot;Arrow Diagramming&quot;: Verify whether A -&gt; B      |
+|    Inverted Direction        | influenced whom or IV/DV roles.       | or B -&gt; A matches the text arrow identically.   |
++------------------------------+---------------------------------------+-------------------------------------------------+
+| 4. Real-World Fact /         | Factually true in science/history,    | &quot;Closed Universe Principle&quot;: If not in the      |
+|    Textual Absence           | but completely absent from passage.   | text exhibit, it does not exist in the universe.|
++==============================+=======================================+=================================================+
+</code></pre>
+<h4 id="3-dual-passage-comparison-strategy-text-1-vs-text-2">3. Dual-Passage Comparison Strategy (Text 1 vs. Text 2)</h4>
+<p>Dual passages evaluate your ability to hold two distinct perspectives in working memory without cross-contaminating their claims.</p>
+<pre><code>       [TEXT 1]                              [TEXT 2]
+  Author A's Thesis                     Author B's Thesis
+          \                                     /
+           \                                   /
+            ▼                                 ▼
+      [THE INTERSECTION: The Single Variable Both Authors Address]
+                                  │
+         ┌────────────────────────┴────────────────────────┐
+         ▼                                                 ▼
+   [AGREEMENT]                                      [DISAGREEMENT]
+Both acknowledge the phenomenon                  Text 2 critiques Text 1's:
+exists or has significance.                      - Methodology / Sample size
+                                                 - Overstated conclusion
+                                                 - Alternative explanation
+</code></pre>
+<h5 id="the-dual-passage-3-step-execution-protocol">The Dual-Passage 3-Step Execution Protocol:</h5>
+<ol>
+<li><strong>Step 1: Read Text 1 &amp; Anchor</strong>: Summarize Text 1's thesis in 4 words (e.g., "Ancient pottery = domestic use").</li>
+<li><strong>Step 2: Read Text 2 Through a Relationship Lens</strong>:</li>
+<li>Determine Text 2's stance relative to Text 1:<ul>
+<li><em>Direct Rebuttal</em>: Text 2 argues Text 1 is factually wrong.</li>
+<li><em>Methodological Critique</em>: Text 2 accepts the goal, but attacks Text 1's sample size, equipment, or assumptions.</li>
+<li><em>Nuanced Qualification</em>: Text 2 states Text 1 is correct <em>only under narrow conditions</em>.</li>
+<li><em>Alternative Explanation</em>: Text 2 agrees with the observed data, but proposes an entirely different mechanism.</li>
+</ul>
+</li>
+<li><strong>Step 3: Guard Against Perspective Reversal</strong>:</li>
+<li>Question Stem: <em>"Based on the texts, how would the author of Text 2 respond to Text 1's claim regarding X?"</em></li>
+<li><strong>Lethal Distractor</strong>: College Board routinely provides an option that accurately describes what <strong>Author 1</strong> thinks! Re-anchor: <em>You are speaking solely through the mouth of Author 2.</em></li>
+</ol>
+<h4 id="4-command-of-evidence-dual-filter-verification">4. Command of Evidence Dual-Filter Verification</h4>
+<h5 id="a-command-of-evidence-textual-hypothesis-testing">A. Command of Evidence: Textual (Hypothesis Testing)</h5>
+<ul>
+<li>Questions ask: <em>"Which finding, if true, would most directly support/undermine the researchers' hypothesis?"</em></li>
+<li><strong>Execution Protocol</strong>:</li>
+<li>Underline the exact hypothesis. Identify the <strong>Independent Variable (IV)</strong> and <strong>Dependent Variable (DV)</strong>.<ul>
+<li><em>Example</em>: "Increased soil salinity (IV) decreases root nodule formation (DV)."</li>
+</ul>
+</li>
+<li>Formulate the Winning Evidence:<ul>
+<li><em>To Support</em>: When salinity is high, root nodules decrease; or when salinity is low, root nodules increase.</li>
+<li><em>To Undermine</em>: High salinity with unchanged/increased nodules; or low nodules without salinity.</li>
+</ul>
+</li>
+<li>Disqualify "Topic-Adjacent" Traps: Traps will state fascinating biological facts about soil or roots that fail to link the IV directly to the DV.</li>
+</ul>
+<h5 id="b-command-of-evidence-quantitative-data-graphics-tables-charts-scatterplots">B. Command of Evidence: Quantitative Data Graphics (Tables, Charts, Scatterplots)</h5>
+<pre><code>                         THE DUAL-FILTER SYSTEM
+               Does the answer choice satisfy BOTH filters?
+                                    │
+            ┌───────────────────────┴───────────────────────┐
+            ▼                                               ▼
+     [FILTER 1: DATA ACCURACY]                    [FILTER 2: LOGICAL RELEVANCE]
+Is the number/trend factually true               Does this specific number/trend
+according to the chart/table?                    actually prove the argument made in
+   (Look at axes, labels, units)                  the preceding sentence of the text?
+</code></pre>
+<ul>
+<li><strong>The Golden Rule</strong>: An answer choice that is 100% mathematically correct according to the graph is <strong>WRONG</strong> if it does not prove the specific claim in the passage!</li>
+<li><strong>Data Inspection Checklist</strong>:</li>
+<li>[ ] <strong>Axis Labels &amp; Units</strong>: Are values in thousands, percentages, ratios, or raw counts?</li>
+<li>[ ] <strong>Keys &amp; Legends</strong>: Solid line vs. dashed line; dark bar vs. striped bar.</li>
+<li>[ ] <strong>Comparative Verbs</strong>: Does the text claim "greater than," "less than," or "highest overall"?</li>
+</ul>
+<hr />
+<h3 id="22-words-in-context-vocabulary-mastery">2.2 Words in Context &amp; Vocabulary Mastery</h3>
+<p>The Digital SAT evaluates Tier-2 academic vocabulary in high-constraint contexts. It does not test obscure 19th-century dictionary trivia, but words with precise contextual nuances and grammatical collocations.</p>
+<h4 id="1-the-3-step-execution-protocol-cover-predict-match">1. The 3-Step Execution Protocol: "Cover, Predict, Match"</h4>
+<pre><code>Step 1: COVER THE OPTIONS
+   └──&gt; Shield the 4 choices immediately. Do not look at them. Prevent confirmation bias.
+
+Step 2: READ CONTEXT &amp; INSERT DUMMY PREDICTION
+   └──&gt; Read the entire sentence. Identify logical signposts:
+        - Contrast word? (However, Although, Rather than)
+        - Explanation/Colon? (: , — , in other words)
+        - Cause/Effect? (Because, Consequently, As a result)
+   └──&gt; Write down an ultra-simple &quot;5th-grade dummy word&quot; in the blank
+        (e.g., &quot;fake,&quot; &quot;support,&quot; &quot;weaken,&quot; &quot;stop,&quot; &quot;short-lived&quot;).
+
+Step 3: MATCH CONNOTATION &amp; DENOTATION
+   └──&gt; Reveal the 4 choices.
+   └──&gt; Compare each against your dummy word.
+   └──&gt; Eliminate choices with wrong valence (+/-) or wrong intensity. Select the match.
+</code></pre>
+<h4 id="2-context-clue-decoding-mechanics">2. Context-Clue Decoding Mechanics</h4>
+<ul>
+<li><strong>Contrast Clues</strong> (<em>Although, despite, yet, whereas, while, however, far from [X], rather than [Y]</em>):</li>
+<li>The blank must be the exact semantic opposite of the reference phrase.</li>
+<li><em>Example</em>: "Far from being <strong><em>_</em></strong>, the candidate's speech was concise and disciplined." (Opposite of concise = <em>diffuse, loquacious, prolix</em>).</li>
+<li><strong>Restatement &amp; Definition Clues</strong> (<em>That is, in other words, colons <code>:</code>, single em-dashes <code>—</code>, appositives</em>):</li>
+<li>The clause following the colon or dash literally defines the blank.</li>
+<li><em>Example</em>: "The evidence was <strong><em>_</em></strong>: it contained numerous internal contradictions and unverified assumptions." (Prediction: flawed/weak $\rightarrow$ Key: <em>specious, tenuous</em>).</li>
+<li><strong>Tone &amp; Connotation Matching</strong>: If an author characterizes a theory as "groundbreaking," the blank describing the academic response cannot be a lukewarm verb like <em>noted</em>; it must be an elevated verb like <em>hailed, acclaimed, championed</em>.</li>
+</ul>
+<h4 id="3-high-frequency-morphology-master-reference">3. High-Frequency Morphology Master Reference</h4>
+<h5 id="a-27-essential-high-frequency-prefixes">A. 27 Essential High-Frequency Prefixes</h5>
+<pre><code>+================+=============================+=================================================+
+| Prefix         | Meaning                     | Target SAT Words &amp; Applied Definitions          |
++================+=============================+=================================================+
+| ab-, abs-      | away, from, off             | aberrant (deviating from normal), abstain       |
+| ante-          | before                      | antedate (precede in time), antecedent          |
+| anti-, ant-    | against, opposite           | antipathy (hostility), antithetical (opposite)  |
+| bene-, bon-    | good, well                  | beneficent (generous), benign (harmless/gentle) |
+| circum-        | around                      | circumspect (cautious), circumscribe (restrict) |
+| con-, com-     | with, together, thoroughly  | corroborate (confirm), coalesce (unite)         |
+| contra-        | against, opposing           | contravene (violate/conflict with)              |
+| de-            | down, away, reverse         | delineate (outline), deprecate, debunk          |
+| dis-, dif-     | apart, not, away            | disparate (fundamentally distinct), diffident   |
+| equi-          | equal                       | equivocal (ambiguous), equanimity (calmness)    |
+| eu-            | good, well, pleasant        | eulogize (praise highly), euphonious            |
+| ex-, ef-       | out of, from, thoroughly    | evanescent (fleeting), exacerbate (worsen)      |
+| hyper-         | excessive, over             | hyperbolic (exaggerated), hypercritical         |
+| in-, im- (neg) | not, un-                    | innocuous (harmless), implacable (unyielding)   |
+| in-, im- (dir) | in, into, toward            | inundate (flood/overwhelm), inculcate           |
+| inter-         | between, among              | intermittent (sporadic), intercede              |
+| mal-           | bad, ill, evil              | malevolent (spiteful), malign (harmful)         |
+| ob-, op-       | against, blocking, facing   | obviate (prevent/make unnecessary), obfuscate   |
+| per-           | through, thoroughly         | pellucid (translucently clear), perfunctory     |
+| peri-          | around, surrounding         | peripheral (secondary/outer), peripatetic       |
+| pre-           | before, ahead               | prescient (foresightful), precipitate (cause)   |
+| pro-           | forward, for, promoting     | proliferate (rapidly increase), protract        |
+| re-            | back, again                 | repudiate (reject validity), reticent (reserved)|
+| sub-, sup-     | under, below, secondary     | subvert (undermine), substantiate (prove)       |
+| super-, sur-   | over, above, excess         | superfluous (redundant/unnecessary), surfeit    |
+| syn-, sym-     | together, same              | synchronous, synergistic, synthesis             |
+| trans-         | across, beyond              | transient (short-lived), transcendent           |
++================+=============================+=================================================+
+</code></pre>
+<h5 id="b-21-essential-high-frequency-roots">B. 21 Essential High-Frequency Roots</h5>
+<pre><code>+================+=============================+=================================================+
+| Root           | Meaning                     | Target SAT Words &amp; Applied Definitions          |
++================+=============================+=================================================+
+| cap-, cept-    | take, seize, hold           | capacious (spacious), perceptive, susceptible   |
+| chron-         | time                        | anachronistic (out of historical time), chronic |
+| cogn-, gno-    | to know                     | cognizant (aware), prognosis, incognito         |
+| cred-          | to believe, trust           | credulous (gullible), credence (acceptance)     |
+| dict-, voc-    | to speak, call              | advocate, equivocate, vociferous (clamorous)    |
+| duc-, duct-    | to lead, pull               | conducive (fostering), induce, deduce           |
+| flu-, flux-    | to flow                     | superfluous, mellifluous (sweetly flowing)      |
+| gen-           | birth, produce, origin      | indigenous, heterogeneous, ingenuous (naive)    |
+| loq-, loc-     | to speak                    | loquacious (talkative), circumlocution          |
+| luc-, lum-     | light, clarity              | lucid, elucidate (clarify), pellucid (clear)    |
+| mit-, miss-    | to send, release            | remiss (negligent), intermittent (sporadic)     |
+| mut-           | to change                   | immutable (unchangeable), mutable               |
+| path-          | feeling, emotion, disease   | antipathy (dislike), apathy (indifference)      |
+| plac-          | to soothe, please           | placate (pacify), implacable (unyielding)       |
+| sci-           | to know                     | prescient (foresight), conscientious            |
+| spec-, spic-   | to look, see                | circumspect (cautious), specious (misleading)   |
+| sta-, sist-    | to stand, firm              | static, substantiate, obstinate (stubborn)      |
+| ten-, tain-    | to hold, keep               | tenuous (slight/weak), tenacious (persistent)   |
+| tract-         | to drag, pull               | intractable (stubborn/unmanageable), retract    |
+| vac-, van-     | empty, hollow               | vacuous (mindless), evanescent (fleeting)       |
+| ver-           | truth                       | veracity (truthfulness), aver (declare true)    |
++================+=============================+=================================================+
+</code></pre>
+<h5 id="c-high-frequency-suffix-decoders">C. High-Frequency Suffix Decoders</h5>
+<ul>
+<li><strong>Noun Makers</strong>: <code>-tion, -sion, -ity, -ment, -ance, -ence, -ist, -itude</code> (<em>rectitude, reticence, dissonance</em>).</li>
+<li><strong>Adjective Makers</strong>: <code>-ous, -ious, -ic, -able, -ible, -ant, -ent, -ive, -ary</code> (<em>salutary, nascent, provocative</em>).</li>
+<li><strong>Verb Makers</strong>: <code>-ate, -ize, -ify</code> (<em>mollify, galvanize, obviate, emulate</em>).</li>
+</ul>
+<h4 id="4-the-40-essential-hard-module-dsat-vocabulary-words">4. The 40 Essential Hard-Module dSAT Vocabulary Words</h4>
+<ol>
+<li><strong>Ambivalent</strong>: Having mixed, contradictory feelings; unresolved.</li>
+<li><strong>Anomalous</strong>: Deviating from standard or expected norms; irregular.</li>
+<li><strong>Belie</strong>: To disguise, contradict, or give a false impression of.</li>
+<li><strong>Bolster</strong>: To support, strengthen, or reinforce.</li>
+<li><strong>Circumscribe</strong>: To restrict within narrow limits; confine.</li>
+<li><strong>Concede</strong>: To acknowledge, surrender, or admit reluctantly.</li>
+<li><strong>Corroborate</strong>: To confirm or support with evidence.</li>
+<li><strong>Delineate</strong>: To portray, outline, or describe with precision.</li>
+<li><strong>Didactic</strong>: Intended to instruct, especially with moralizing undertones.</li>
+<li><strong>Disparate</strong>: Fundamentally distinct or completely dissimilar.</li>
+<li><strong>Eschew</strong>: To deliberately avoid, shun, or abstain from.</li>
+<li><strong>Ephemeral</strong>: Lasting for a very brief period; fleeting.</li>
+<li><strong>Equivocal</strong>: Open to multiple interpretations; ambiguous or evasive.</li>
+<li><strong>Exacerbate</strong>: To make a situation, problem, or pain worse.</li>
+<li><strong>Fastidious</strong>: Very attentive to accuracy and minute detail; meticulous.</li>
+<li><strong>Galvanize</strong>: To shock or stimulate into sudden activity.</li>
+<li><strong>Implacable</strong>: Incapable of being pacified, appeased, or mitigated.</li>
+<li><strong>Inimical</strong>: Tending to obstruct or harm; hostile or adverse.</li>
+<li><strong>Innocuous</strong>: Producing no injury; harmless; inoffensive.</li>
+<li><strong>Intractable</strong>: Difficult to manage, control, or solve; obstinate.</li>
+<li><strong>Laconic</strong>: Using very few words; concise to the point of bluntness.</li>
+<li><strong>Mercurial</strong>: Subject to sudden, unpredictable shifts in mood or character.</li>
+<li><strong>Mitigate</strong>: To make less severe, harmful, or painful.</li>
+<li><strong>Obfuscate</strong>: To deliberately make obscure, unclear, or difficult to understand.</li>
+<li><strong>Obviate</strong>: To anticipate and prevent; make unnecessary.</li>
+<li><strong>Pellucid</strong>: Translucently clear; effortlessly comprehensible.</li>
+<li><strong>Perfunctory</strong>: Performed merely as a routine duty; careless or superficial.</li>
+<li><strong>Plausible</strong>: Seeming reasonable or probable; credible.</li>
+<li><strong>Polemical</strong>: Involving intensely critical, aggressive, or disputatious argument.</li>
+<li><strong>Pragmatic</strong>: Dealing with problems practically rather than theoretically.</li>
+<li><strong>Qualify</strong>: To limit, modify, or restrict an assertion with reservations.</li>
+<li><strong>Repudiate</strong>: To reject the validity, authority, or truth of.</li>
+<li><strong>Reticent</strong>: Inclined to remain silent; reserved; restrained.</li>
+<li><strong>Salutary</strong>: Producing beneficial effects; wholesome (often despite being unpleasant).</li>
+<li><strong>Scrutinize</strong>: To examine closely and critically.</li>
+<li><strong>Specious</strong>: Superficially plausible, but actually wrong and misleading.</li>
+<li><strong>Substantiate</strong>: To establish or prove by competent evidence.</li>
+<li><strong>Superfluous</strong>: Exceeding what is sufficient or necessary; redundant.</li>
+<li><strong>Tenuous</strong>: Weak, unsubstantial, flimsy, or precarious.</li>
+<li><strong>Undermine</strong>: To weaken or damage subversively or insidiously.</li>
+</ol>
+<hr />
+<h3 id="23-standard-english-conventions-zero-tolerance-cheat-card">2.3 Standard English Conventions: Zero-Tolerance Cheat Card</h3>
+<p>Standard English Conventions questions (Q15–23) are 100% rule-governed. There is zero subjective interpretation.</p>
+<h4 id="1-clause-architecture-independent-vs-dependent">1. Clause Architecture: Independent vs. Dependent</h4>
+<ul>
+<li><strong>Independent Clause (IC)</strong>: Contains a Subject + Verb and expresses a complete, standalone thought.</li>
+<li><em>Example</em>: <code>The astrophysicist published the breakthrough data.</code></li>
+<li><strong>Dependent Clause (DC)</strong>: Contains a Subordinating Conjunction (<em>although, because, since, while, if, when, unless</em>) or Relative Pronoun (<em>who, which, that</em>) + Subject + Verb. Cannot stand alone.</li>
+<li><em>Example</em>: <code>Although the astrophysicist published the breakthrough data...</code></li>
+</ul>
+<h4 id="2-the-seven-inviolable-sentence-boundary-formulas">2. The Seven Inviolable Sentence Boundary Formulas</h4>
+<pre><code>Formula 1: [ IC ] . [ IC ]                   (Period)
+Formula 2: [ IC ] ; [ IC ]                   (Semicolon)
+Formula 3: [ IC ] , [ FANBOYS ] [ IC ]       (Comma + Coordinating Conjunction)
+Formula 4: [ IC ] : [ IC or DC or Phrase ]   (Colon)
+Formula 5: [ IC ] — [ IC or DC or Phrase ]   (Single Em-dash)
+Formula 6: [ DC ] , [ IC ]                   (Introductory Dependent Clause + Comma + IC)
+Formula 7: [ IC ] [ DC ]                     (IC + Essential Dependent Clause, NO COMMA)
+</code></pre>
+<h5 id="fatal-clause-violations">Fatal Clause Violations:</h5>
+<ul>
+<li>❌ <strong>Comma Splice</strong>: <code>[ IC ] , [ IC ]</code> $\rightarrow$ Joining two independent clauses with only a comma. <strong>FATAL ERROR</strong>.</li>
+<li>❌ <strong>Run-On (Fused Sentence)</strong>: <code>[ IC ] [ IC ]</code> $\rightarrow$ Joining two independent clauses with zero punctuation. <strong>FATAL ERROR</strong>.</li>
+<li>❌ <strong>Conjunctive Adverb Splice</strong>: <code>[ IC ] , however , [ IC ]</code> $\rightarrow$ <em>However, therefore, furthermore, nevertheless</em> are adverbs, NOT conjunctions. They cannot join clauses with a comma! Must be: <code>[ IC ] ; however , [ IC ]</code> or <code>[ IC ] . However , [ IC ]</code>.</li>
+<li>❌ <strong>Compound Verb Splice</strong>: <code>[ Subject ] [ Verb 1 ] , and [ Verb 2 ]</code> $\rightarrow$ When a single subject performs two verbs, NEVER place a comma before <em>and</em>! Only use <code>comma + and</code> if there is a complete independent clause after <em>and</em>.</li>
+</ul>
+<h4 id="3-semicolon-period-equivalence-elimination-rule">3. Semicolon &amp; Period Equivalence Elimination Rule</h4>
+<ul>
+<li><strong>The Independent Clause Equivalence Rule</strong>: Between two independent clauses, a semicolon (<code>;</code>) is structurally identical to a period (<code>.</code>).</li>
+<li><code>[ INDEPENDENT CLAUSE ] ; [ INDEPENDENT CLAUSE ]</code> $\equiv$ <code>[ INDEPENDENT CLAUSE ] . [ INDEPENDENT CLAUSE ]</code></li>
+<li><strong>The Shortcut</strong>: If Option A features a semicolon and Option B features a period between identical independent clauses with no other differences, <strong>ELIMINATE BOTH OPTIONS IMMEDIATELY</strong>. The SAT cannot have two correct answers; two identical clause-separators mutually eliminate each other.</li>
+<li><strong>⚠️ The Mandatory Exception: Complex Lists ("The Super-Comma")</strong>:</li>
+<li>The semicolon/period equivalence rule applies <strong>strictly between independent clauses</strong>. It does <strong>NOT</strong> apply to complex lists!</li>
+<li>When items in a series already contain internal commas (such as people paired with titles, cities with states, or dates), <strong>semicolons are required</strong> to separate the major list elements, acting as "super-commas":<ul>
+<li>✅ <em>"The symposium panel included Dr. Aris, a biochemist; Dr. Bell, an ecologist; and Dr. Chen, a geneticist."</em></li>
+<li>❌ In this construction, substituting a period for the semicolon creates a fatal sentence fragment: <em>"The symposium panel included Dr. Aris, a biochemist. Dr. Bell, an ecologist. And Dr. Chen, a geneticist."</em></li>
+</ul>
+</li>
+<li><strong>Rule</strong>: In an extended list whose components contain internal descriptive commas, choose the <strong>semicolon</strong> to demarcate elements; never eliminate it against a period!</li>
+</ul>
+<h4 id="4-colons-vs-single-em-dashes">4. Colons (<code>:</code>) vs. Single Em-Dashes (<code>—</code>)</h4>
+<pre><code>               THE ANTICIPATORY PUNCTUATION RULE
+    Both Colons (:) and Single Em-Dashes (—) REQUIRE an
+        INDEPENDENT CLAUSE immediately BEFORE the mark!
+
+[ INDEPENDENT CLAUSE ] :  [ Explanation / Elaboration / List / Single Noun ]
+[ INDEPENDENT CLAUSE ] —  [ Explanation / Abrupt Shift / Dramatic Punchline ]
+</code></pre>
+<ul>
+<li><strong>The Before-Rule</strong>: If you cover everything after the colon or single dash, what remains MUST be a complete standalone sentence. If it is a fragment, eliminate the colon/dash instantly.</li>
+<li><strong>The After-Rule</strong>: What follows a colon or single dash can be anything: a single word, a noun phrase, a bulleted list, a dependent clause, or an independent clause.</li>
+<li><strong>Forbidden Colon Traps</strong>:</li>
+<li>❌ NEVER place a colon after a verb (e.g., <em>"The primary ingredients are: flour, sugar..."</em> $\rightarrow$ WRONG).</li>
+<li>❌ NEVER place a colon after a preposition (e.g., <em>"The team traveled to: London..."</em> $\rightarrow$ WRONG).</li>
+<li>❌ NEVER place a colon after <em>such as, including, for example</em>.</li>
+</ul>
+<h4 id="5-symmetrical-punctuation-for-parenthetical-elements">5. Symmetrical Punctuation for Parenthetical Elements</h4>
+<p>When non-essential information is inserted into the middle of a clause, it must be bounded by matching punctuation marks:</p>
+<pre><code>Pattern 1 (Double Commas):      [ Sentence Start ] , [ Non-Essential Element ] , [ Sentence Continues ]
+Pattern 2 (Double Em-Dashes):   [ Sentence Start ] — [ Non-Essential Element ] — [ Sentence Continues ]
+Pattern 3 (Parentheses):        [ Sentence Start ] ( [ Non-Essential Element ] ) [ Sentence Continues ]
+</code></pre>
+<ul>
+<li>❌ <strong>Mismatch Error</strong>: <code>The archaeologist — who studied pottery , discovered a kiln.</code> $\rightarrow$ <strong>ILLEGAL</strong>. Never mix an em-dash with a comma.</li>
+<li><strong>The Finger Removal Test</strong>: Cover the phrase between the matching commas/dashes with your fingers. The remaining text MUST snap together to form a grammatically seamless sentence!</li>
+</ul>
+<h4 id="6-restrictive-vs-non-essential-modifiers-names-titles-and-that-vs-which">6. Restrictive vs. Non-Essential Modifiers: Names, Titles, and That vs. Which</h4>
+<h5 id="a-names-and-proper-nouns-the-binary-choice-rule">A. Names and Proper Nouns (The Binary Choice Rule)</h5>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ Case 1: Job Title / Descriptor IMMEDIATELY BEFORE Name (Restrictive)                    │
+│         ZERO COMMAS AT ALL (Zero Punctuation)                                           │
+│         Example: Novelist Toni Morrison wrote Beloved.                                  │
+│         Example: Marine biologist Sylvia Earle spoke at the summit.                     │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ Case 2: Proper Name Followed by Job Title / Appositive (Non-Restrictive)                │
+│         TWO COMMAS REQUIRED (Parenthetical)                                             │
+│         Example: Toni Morrison, a novelist, wrote Beloved.                              │
+│         Example: Sylvia Earle, a marine biologist, spoke at the summit.                 │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ Case 3: Unique vs. Non-Unique Descriptors                                               │
+│         - Non-Unique Descriptor (Many exist): ZERO COMMAS                               │
+│           Example: The author Toni Morrison wrote Beloved.                              │
+│           (No commas because there are millions of authors; the name restricts which).  │
+│         - Inherently Unique Descriptor (Only ONE exists): TWO COMMAS                    │
+│           Example: The author of Beloved, Toni Morrison, spoke at the symposium.        │
+│           Example: The 16th U.S. president, Abraham Lincoln, signed the proclamation.   │
+│           (Commas used because descriptor uniquely identifies person; name is extra).   │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>The Single-Comma Trap &amp; Its Crucial Exception</strong>:</li>
+<li><strong>Within an Independent Clause</strong>: An option containing a single comma separating a restrictive job title/descriptor from a name (e.g., ❌ <em>"Novelist, Toni Morrison wrote..."</em> or ❌ <em>"Novelist Toni Morrison, wrote..."</em>) is <strong>ALWAYS WRONG</strong>. Within an independent clause, it is strictly a binary choice: <strong>ZERO COMMAS</strong> (restrictive) or <strong>TWO COMMAS</strong> (non-restrictive appositive pair).</li>
+<li><strong>⚠️ The Introductory Clause/Phrase Exception</strong>: A single comma following a name is <strong>VALID AND MANDATORY</strong> when the name terminates an introductory dependent clause or prepositional phrase:<ul>
+<li>✅ <em>"According to acclaimed novelist Toni Morrison, writing is an act of discovery."</em></li>
+<li>✅ <em>"Although mentored by scientist Sylvia Earle, the interns conducted the dive independently."</em>
+<em>(Here, the comma is NOT an illegal appositive comma; it is the mandatory boundary comma separating the introductory dependent element from the main independent clause).</em></li>
+</ul>
+</li>
+</ul>
+<h5 id="b-that-vs-which">B. "That" vs. "Which"</h5>
+<ul>
+<li><strong>"That" = Essential / Restrictive</strong>: NEVER use a comma before "that" when introducing a defining relative clause!</li>
+<li>✅ <code>The telescope that was launched in 2021 has captured deep infrared images.</code></li>
+<li>❌ <code>The telescope, that was launched in 2021, has captured...</code> (Illegal comma).</li>
+<li><strong>"Which" = Non-Essential / Non-Restrictive</strong>: ALWAYS use a comma before "which" when introducing a descriptive relative clause!</li>
+<li>✅ <code>The James Webb Space Telescope, which was launched in 2021, has captured deep infrared images.</code></li>
+</ul>
+<h4 id="7-the-six-inviolable-zero-punctuation-zones">7. The Six Inviolable Zero-Punctuation Zones</h4>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                          ZERO-PUNCTUATION CHEAT CARD                                    │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ 1. NEVER separate a Subject from its Verb:                                              │
+│    ❌ The bright red sports car parked across the street, belongs to Dr. Gomez.         │
+│    ✅ The bright red sports car parked across the street belongs to Dr. Gomez.           │
+│                                                                                         │
+│ 2. NEVER separate a Verb from its Direct Object:                                        │
+│    ❌ The culinary team prepared, a five-course tasting menu.                           │
+│    ✅ The culinary team prepared a five-course tasting menu.                            │
+│                                                                                         │
+│ 3. NEVER separate a Preposition from its Noun Object:                                    │
+│    ❌ The expedition traveled to, the remote research station in Antarctica.             │
+│    ✅ The expedition traveled to the remote research station in Antarctica.              │
+│                                                                                         │
+│ 4. NEVER place a comma between an Adjective and the Noun it modifies:                   │
+│    ❌ It was a cold, desolate, windswept, landscape.                                    │
+│    ✅ It was a cold, desolate, windswept landscape.                                     │
+│                                                                                         │
+│ 5. NEVER place an UNPAIRED comma directly before or after &quot;That&quot;:                       │
+│    ❌ The geologist announced, that the fault line had shifted.                         │
+│    ✅ The geologist announced that the fault line had shifted.                          │
+│    ⚠️ EXCEPTION: A comma MAY appear adjacent to &quot;that&quot; if part of a PARENTHETICAL PAIR:  │
+│    ✅ Paleontologists hypothesized that, despite severe fossil weathering, microscopic  │
+│       trace elements would remain intact.                                               │
+│                                                                                         │
+│ 6. NEVER place a comma after &quot;Such as&quot; or &quot;Including&quot;:                                  │
+│    ❌ Apex predators, such as, wolves and cougars, maintain balance.                     │
+│    ✅ Apex predators, such as wolves and cougars, maintain balance.                      │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h4 id="8-subject-verb-agreement-mechanics">8. Subject-Verb Agreement Mechanics</h4>
+<ol>
+<li><strong>The Intervening Prepositional Phrase Trap</strong>: Cross out all prepositional phrases between the subject and verb!</li>
+<li><code>The discovery [of fossilized dinosaur footprints] [in the cliffs] [has / have] amazed scientists.</code> $\rightarrow$ Subject: <code>discovery</code> (singular) $\rightarrow$ Key: <code>has</code>.</li>
+<li><strong>The Parenthetical Interruption Trap</strong>: Phrases like <em>along with, as well as, in addition to, accompanied by, together with</em> are prepositional modifiers, NOT conjunctions. They do not make a singular subject plural!</li>
+<li><code>The lead researcher, along with five graduate assistants, [is / are] flying to Chile.</code> $\rightarrow$ Subject: <code>researcher</code> (singular) $\rightarrow$ Key: <code>is</code>.</li>
+<li><strong>Indefinite Pronouns</strong>:</li>
+<li><strong>Always Singular</strong>: <em>Each, everyone, everybody, someone, somebody, anyone, anybody, no one, nobody, either, neither, one</em>.<ul>
+<li><code>Each of the experimental samples was sterilized.</code> (Not <em>were</em>).</li>
+</ul>
+</li>
+<li><strong>Always Plural</strong>: <em>Both, few, many, several</em>.</li>
+<li><strong>SANAM Pronouns (Variable)</strong>: <em>Some, Any, None, All, Most</em>. Look at the object of the preposition:<ul>
+<li><code>All of the water [uncountable] was spilled.</code></li>
+<li><code>All of the test tubes [countable/plural] were sterilized.</code></li>
+</ul>
+</li>
+<li><strong>Inverted Sentences</strong>: Sentences starting with prepositional phrases often place the subject <em>after</em> the verb!</li>
+<li><code>Scattered across the ocean floor [was / were] hundreds of ancient clay jars.</code> $\rightarrow$ Subject: <code>hundreds of ancient clay jars</code> (plural) $\rightarrow$ Key: <code>were</code>.</li>
+</ol>
+<h4 id="9-pronoun-antecedent-agreement-ambiguity">9. Pronoun-Antecedent Agreement &amp; Ambiguity</h4>
+<ol>
+<li><strong>Singular Entity vs. Plural Trap</strong>: Companies, universities, governments, teams, cities, and committees are collective singular entities. They must be referred to as <strong>it / its</strong>, NEVER <strong>they / their</strong>!</li>
+<li>❌ <code>Microsoft announced that they will open a new quantum laboratory.</code></li>
+<li>✅ <code>Microsoft announced that it will open a new quantum laboratory.</code></li>
+<li><strong>Pronoun Ambiguity Resolution</strong>: If a pronoun (<em>it, this, that, they</em>) could logically refer to more than one noun, it is an error. On the SAT, the correct choice will replace the vague pronoun with the explicit noun (e.g., <code>the vehicle was destroyed</code>).</li>
+</ol>
+<h4 id="10-modifier-placement-dangling-and-misplaced-modifiers">10. Modifier Placement: Dangling and Misplaced Modifiers</h4>
+<p>When an introductory modifying phrase (typically beginning with a participle <code>-ing</code> or <code>-ed</code>) opens a sentence, the noun being described MUST immediately follow the comma:</p>
+<pre><code>[ INTRODUCTORY MODIFYING PHRASE ] ,  [ THE EXACT NOUN PERFORMING THE ACTION ] + [ VERB ] ...
+</code></pre>
+<ul>
+<li>❌ <strong>Dangling Modifier</strong>: <code>Having analyzed the ice core samples for months, the climate anomaly was finally explained by Dr. Ward.</code> (Did the "climate anomaly" analyze ice cores? No! Dr. Ward did).</li>
+<li>✅ <strong>Correct Revision</strong>: <code>Having analyzed the ice core samples for months, Dr. Ward finally explained the climate anomaly.</code></li>
+</ul>
+<hr />
+<h3 id="24-transitions-rhetorical-synthesis">2.4 Transitions &amp; Rhetorical Synthesis</h3>
+<h4 id="1-rhetorical-synthesis-bullet-point-questions-the-30-second-algorithm">1. Rhetorical Synthesis (Bullet Point Questions): The 30-Second Algorithm</h4>
+<p>Rhetorical synthesis questions present 4–6 bulleted research notes followed by a prompt stem. Reading the bullets first wastes 45–60 seconds per question. Realistic elite pacing is <strong>30–40 seconds</strong>. 1500+ scorers execute the <strong>Prompt-First Inversion Algorithm</strong>:</p>
+<pre><code>                       THE 30-SECOND INVERSION ALGORITHM
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: SKIP THE BULLET POINTS INITIALLY                                    │
+│         Do not read the notes first. Scroll directly to the prompt stem.    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ STEP 2: ISOLATE THE COMMUNICATIVE GOAL                                      │
+│         Read: &quot;The student wants to [VERB] + [TARGET CRITERIA]...&quot;          │
+│         Common Goals:                                                       │
+│         - &quot;Emphasize a difference between X and Y&quot;                          │
+│         - &quot;Introduce [Person/Work] to an audience unfamiliar with them&quot;     │
+│         - &quot;Emphasize a similarity between A and B&quot;                          │
+│         - &quot;Highlight the findings/conclusion of the study&quot;                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ STEP 3: CONSTRUCT A 2- OR 3-PART CHECKLIST                                  │
+│         Example Goal: &quot;Emphasize a difference between species A and B.&quot;     │
+│         Checklist:                                                          │
+│         [ ] 1. Mentions Species A                                           │
+│         [ ] 2. Mentions Species B                                           │
+│         [ ] 3. Explicitly states how they DIFFER (contrast word/meaning)    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ STEP 4: SCAN AND ELIMINATE STRUCTURAL MISMATCHES (20–25 sec)                │
+│         - Option A mentions only Species A? -&gt; ELIMINATE.                   │
+│         - Option B lists facts about both but states no difference? -&gt; OUT. │
+│         - Option C shows Species A nests in trees while B burrows? -&gt; CAND. │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ STEP 5: IF TIED, CONSULT BULLETS TO BREAK THE TIE                           │
+│         If two choices satisfy all checklist items, consult notes to break  │
+│         the tie.                                                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ STEP 5.5: THE 5-SECOND FACTUAL SANITY CHECK (MANDATORY)                     │
+│         Before clicking confirm, glance at the specific bullet containing   │
+│         the data/claim to ensure your chosen answer didn't reverse names,   │
+│         invert numerical relationships, or import unmentioned facts!        │
+│         (Guards against Hard Module 2 inverted factual traps).              │
+└─────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h5 id="the-unfamiliar-audience-pattern">The "Unfamiliar Audience" Pattern:</h5>
+<ul>
+<li>When the prompt specifies: <em>"introduce [Author/Scientist/Artwork] to an audience unfamiliar with [them],"</em> the correct choice MUST provide:</li>
+<li>The person's <strong>full identity/profession</strong> (e.g., <em>"19th-century American poet Emily Dickinson"</em>).</li>
+<li>Their <strong>primary contribution or defining work</strong>.</li>
+<li>Traps will jump straight into niche technical trivia (e.g., <em>"In 1862, she wrote over 300 manuscripts in Amherst"</em>), which fails to introduce who she is to an unfamiliar reader!</li>
+</ul>
+<h4 id="2-transitions-mastery-the-relationship-categorization-matrix">2. Transitions Mastery: The Relationship Categorization Matrix</h4>
+<p>Transitions establish the logical vector between Sentence 1 and Sentence 2. Group transitions into seven functional families:</p>
+<pre><code>+==================================+=====================================================================================+
+| Transition Family                | High-Frequency Transition Words &amp; Markers                                           |
++==================================+=====================================================================================+
+| Addition &amp; Continuation          | Furthermore, moreover, in addition, additionally, also, besides, likewise, similarly |
+| Contrast &amp; Concession            | However, nevertheless, nonetheless, conversely, in contrast, yet, still, instead    |
+| Cause &amp; Effect / Result          | Therefore, thus, consequently, as a result, hence, accordingly, for this reason     |
+| Exemplification / Specificity    | For example, for instance, specifically, to illustrate, in particular               |
+| Clarification / Restatement      | In other words, that is, put simply, namely                                         |
+| Emphasis &amp; Intensification       | Indeed, in fact, certainly                                                          |
+| Chronology &amp; Sequence            | Subsequently, previously, thereafter, meanwhile, next, finally                      |
++==================================+=====================================================================================+
+</code></pre>
+<h4 id="3-high-yield-transition-elimination-heuristics">3. High-Yield Transition Elimination Heuristics</h4>
+<ol>
+<li><strong>The True Duplicate Synonym Elimination Rule</strong>:</li>
+<li>Applies <strong>ONLY</strong> to true interchangeable twins within identical sub-functions:<ul>
+<li><strong>Pure Addition</strong>: <em>Furthermore</em> == <em>Moreover</em> == <em>In addition</em> == <em>Additionally</em></li>
+<li><strong>Pure Result</strong>: <em>Therefore</em> == <em>Consequently</em> == <em>Thus</em> == <em>As a result</em></li>
+<li><strong>Pure Concession</strong>: <em>Nevertheless</em> == <em>Nonetheless</em> == <em>Regardless</em></li>
+<li><strong>Pure Example</strong>: <em>For example</em> == <em>For instance</em></li>
+</ul>
+</li>
+<li>If two <strong>TRUE TWINS</strong> appear as answer choices, <strong>ELIMINATE BOTH IMMEDIATELY</strong>. A single-answer test cannot justify one over the other.</li>
+<li><strong>Distinct Intra-Family Traps (DO NOT MUTUALLY ELIMINATE!)</strong>:</li>
+<li><strong>However vs. Instead / Rather</strong>:<ul>
+<li><em>However</em> marks a general shift, unexpected concession, or contrasting viewpoint.</li>
+<li><em>Instead</em> and <em>Rather</em> <strong>REQUIRE a negative/rejected antecedent</strong> in the preceding clause (<em>"did not do X; instead, did Y"</em>). If Sentence 1 contains a negation or rejected premise, <em>Instead</em> wins! Do NOT eliminate <em>However</em> and <em>Instead</em> as duplicates.</li>
+</ul>
+</li>
+<li><strong>Furthermore vs. Similarly / Likewise</strong>:<ul>
+<li><em>Furthermore</em> adds an additional point, data, or elaboration to the <strong>same</strong> entity/claim.</li>
+<li><em>Similarly</em> and <em>Likewise</em> establish a comparison or analogy linking <strong>two distinct parallel entities</strong> (e.g., <em>"Elephants use seismic vibrations to navigate. Similarly, golden moles detect underground seismic rumbles."</em>).</li>
+</ul>
+</li>
+<li><strong>For example vs. Specifically</strong>:<ul>
+<li><em>For example</em> introduces a representative, illustrative instance or sample from a broader category.</li>
+<li><em>Specifically</em> narrows down to provide exact, granular specifications or definitive details of the immediately preceding claim.</li>
+</ul>
+</li>
+<li><strong>Therefore vs. Indeed</strong>:<ul>
+<li><em>Therefore</em> introduces a logical consequence, deduction, or causal outcome.</li>
+<li><em>Indeed</em> introduces an intensification or corroboration of the <em>same</em> reality (e.g., <em>"The climb was hazardous. Indeed, three mountaineers had already perished."</em>).</li>
+</ul>
+</li>
+<li><strong>The 3-Step Transition Execution Protocol</strong>:</li>
+<li><strong>Step 1: Read Without the Transition</strong>: Cross out the transition blank and read Sentence 1 followed directly by Sentence 2.</li>
+<li><strong>Step 2: Assign Logical Polarity &amp; Relationship Vector</strong>:<ul>
+<li><em>Sentence 1</em>: Scientists predicted the composite alloy would fracture under high pressure. <code>[Expectation]</code></li>
+<li><em>Sentence 2</em>: The composite alloy endured 50,000 psi without structural deformation. <code>[Contradiction]</code></li>
+<li><em>Vector</em>: Expectation $\rightarrow$ Contradiction = <strong>CONTRAST</strong>.</li>
+</ul>
+</li>
+<li><strong>Step 3: Select Category Match &amp; Verify Nuance</strong>: Eliminate non-matching families (Addition, Cause/Effect, Exemplification). If multiple contrast options remain, check for rejected antecedents (<em>Instead</em>) vs. general shifts (<em>However</em> / <em>Nevertheless</em>).</li>
+</ol>
+<hr />
+<h2 id="part-3-digital-sat-math-780800-master-strategy-desmos-mastery-r3">PART 3: DIGITAL SAT MATH 780–800 MASTER STRATEGY &amp; DESMOS MASTERY (R3)</h2>
+<h3 id="31-desmos-advanced-exploitation-cheatsheet-ready-to-use">3.1 Desmos Advanced Exploitation Cheatsheet (Ready-to-Use)</h3>
+<p>The embedded Desmos calculator is available throughout the entire Math section. It is not merely a computational tool; it is an automated equation-solving engine that converts complex multi-step algebra into zero-error graphical operations.</p>
+<pre><code>+========================================================================================================================+
+|                                    DESMOS ADVANCED SYNTAX &amp; REGRESSION REFERENCE                                       |
++=========================+=============================+==================================+=============================+
+| Target Model            | Mathematical Equation       | Desmos Syntax (Table / Formula)  | Tactical Exploit            |
++=========================+=============================+==================================+=============================+
+| Linear Model            | y = mx + b                  | y_1 ~ m*x_1 + b                  | Extracts slope and intercept|
+|                         |                             |                                  | from 2+ coordinate points.  |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Quadratic (Standard)    | y = ax^2 + bx + c           | y_1 ~ a*x_1^2 + b*x_1 + c        | Finds coefficients a, b, c  |
+|                         |                             |                                  | from 3 points in 1 second.  |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Quadratic (Vertex)      | y = a(x - h)^2 + k          | y_1 ~ a*(x_1 - h)^2 + k          | Extracts vertex (h, k) and  |
+|                         |                             |                                  | vertical stretch a directly.|
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Quadratic (Factored)    | y = a(x - r_1)(x - r_2)     | y_1 ~ a*(x_1 - r_1)*(x_1 - r_2)  | Identifies x-intercepts     |
+|                         |                             |                                  | and scale factor.           |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Exponential Growth/Decay| y = a * b^x                 | y_1 ~ a*b^{x_1}                  | Determines initial value a  |
+|                         |                             |                                  | and multiplier b instantly. |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Circle (Expanded Form)  | x^2 + y^2 - ux - vy - w = 0 | x_1^2 + y_1^2 ~ u*x_1 + v*y_1 + w| MASTER CONIC SHORTCUT:      |
+|                         |                             |                                  | Linear in parameters u,v,w. |
+|                         |                             |                                  | Center = (u/2, v/2),        |
+|                         |                             |                                  | r = sqrt((u/2)^2+(v/2)^2+w) |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Circle (Standard Form)  | (x - h)^2 + (y - k)^2 = r^2 | (x_1 - h)^2 + (y_1 - k)^2 ~ r^2  | Direct extraction of center |
+|                         |                             |                                  | (h, k) and radius r.        |
++-------------------------+-----------------------------+----------------------------------+-----------------------------+
+| Equivalence Check       | f(x) == g(x)                | f(x) - g(x) = 0                  | Plots solution; if whole    |
+|                         |                             |                                  | plane or y=0, expressions =.|
++=========================+=============================+==================================+=============================+
+</code></pre>
+<h4 id="1-the-step-by-step-table-fitting-algorithm">1. The Step-by-Step Table Fitting Algorithm</h4>
+<ol>
+<li>Click the <code>+</code> icon in Desmos $\rightarrow$ select <strong>Table</strong> (<code>x_1</code>, <code>y_1</code>).</li>
+<li>Enter known points into the table columns (e.g., $(2, 5)$, $(4, 13)$, $(6, 29)$).</li>
+<li>In line 2, type the regression model using subscripts: <code>y_1 ~ a*x_1^2 + b*x_1 + c</code>.</li>
+<li>Read parameter values ($a, b, c$) in the Statistics output box.</li>
+<li>In line 3, directly calculate target values (e.g., enter <code>a*(12)^2 + b*(12) + c</code> to evaluate $f(12)$).</li>
+</ol>
+<h4 id="2-the-slider-system-for-parameter-exploration-k">2. The Slider System for Parameter Exploration ($k$)</h4>
+<ul>
+<li><strong>Linear Systems with Unknown Constants</strong>:</li>
+<li>Given: $y = 4x + 9$ and $3y - kx = 12$.</li>
+<li>Enter both equations into Desmos. Click <code>add slider: k</code>.</li>
+<li><em>Infinitely many solutions</em>: Drag slider until both lines coincide completely.</li>
+<li><em>No solution</em>: Drag slider until lines are strictly parallel with distinct intercepts ($k = 12$).</li>
+<li><strong>Non-Linear Intersections &amp; Tangencies</strong>:</li>
+<li>System: $y = x^2 - 6x + 11$ and $y = 2x + k$.</li>
+<li>Enter $x^2 - 6x + 11 = 2x + k$ with slider $k$.</li>
+<li>Desmos renders vertical lines at real roots. As $k$ adjusts, two vertical lines merge into a single line (tangency at $\Delta = 0$) and vanish when no real solutions exist.</li>
+</ul>
+<h4 id="3-direct-inspection-mechanics">3. Direct Inspection Mechanics</h4>
+<ul>
+<li><strong>Zeros and X-Intercepts</strong>: Type $y = f(x)$. Click directly on the horizontal axis; Desmos snaps to the gray points $(r, 0)$ displaying exact coordinates.</li>
+<li><strong>Extrema and Vertex</strong>: Desmos generates gray snap points at local minima, local maxima, and vertices. Click to read $(h, k)$.</li>
+<li><strong>Single-Variable Equations</strong>: Enter $3(2x - 5) + 4 = 19 - x$. Desmos renders a vertical line at the exact solution $x = 4.286$. Click the x-intercept to read the value, or click the fraction icon (<code>30/7</code>).</li>
+</ul>
+<h4 id="4-inequalities-feasible-regions">4. Inequalities &amp; Feasible Regions</h4>
+<ul>
+<li>Type inequalities directly: <code>y &gt; 2x - 4</code> (dashed boundary, shaded above) and <code>y &lt;= -x + 3</code> (solid boundary, shaded below).</li>
+<li><strong>Discrete Point Testing</strong>: To test whether $(2, 1)$ satisfies the system, type <code>(2, 1)</code> on a new line. Desmos plots the point. If it lies within the overlapping shaded region (and not on a dashed line), it is a valid solution.</li>
+</ul>
+<h4 id="5-conversion-angle-mode-arithmetic-syntax">5. Conversion, Angle Mode &amp; Arithmetic Syntax</h4>
+<ul>
+<li><strong>Fraction Toggle</strong>: For any computed decimal output, click the circular/square fraction icon to the left of the calculation line to output the irreducible fraction $p/q$.</li>
+<li><strong>Percentage Syntax</strong>:</li>
+<li>Evaluate percentages directly: <code>15% * 320</code> evaluates to <code>48</code>.</li>
+<li>Percentage equation solving: <code>360 = 120% * x</code> renders a vertical line at $x = 300$.</li>
+<li><strong>Angle Mode Setting (CRITICAL OPERATIONAL SETTING)</strong>:</li>
+<li><strong>DESMOS DEFAULTS TO RADIANS IN BLUEBOOK</strong>.</li>
+<li>If a problem involves right-triangle trigonometry or degree-based angles:<ol>
+<li>Click the <strong>Wrench Icon</strong> (top right of Desmos).</li>
+<li>Toggle the button at the bottom from <strong>Radians</strong> to <strong>Degrees</strong>.</li>
+<li><strong>Sanity Check</strong>: Type <code>sin(30)</code>. If output is <code>0.5</code>, Degree mode is active. If output is <code>-0.98803</code>, you are still in Radians!</li>
+</ol>
+</li>
+</ul>
+<h4 id="6-desmos-pitfalls-failure-modes-mitigation">6. Desmos Pitfalls, Failure Modes &amp; Mitigation</h4>
+<pre><code>+=======================+======================================+=================================================+
+| Pitfall               | Root Cause                           | Mitigation Protocol                             |
++=======================+======================================+=================================================+
+| Scale Truncation      | Default window is [-10, 10]. Roots   | Click the magnifying glass &quot;Zoom Fit&quot; icon, or  |
+|                       | at x=350 or y=1500 are off-screen.   | use the Wrench tool to set axes to [0, 500].   |
++-----------------------+--------------------------------------+-------------------------------------------------+
+| Rounding Degradation  | Re-entering rounded decimals         | Keep intermediate numbers in fraction form or   |
+|                       | (e.g. entering 0.333 for 1/3).       | store as variables (e.g., A = 1/3).             |
++-----------------------+--------------------------------------+-------------------------------------------------+
+| Variable Name Lock    | Typing 4a + 7 = 19 and expecting     | Desmos only graphs single-variable lines along  |
+|                       | a graphical solution line.           | the x-axis. ALWAYS REPLACE VARIABLES WITH x!    |
++-----------------------+--------------------------------------+-------------------------------------------------+
+| Capitalization Errors | Typing X or Y instead of lowercase.  | Desmos treats uppercase letters as undefined    |
+|                       |                                      | constants. Enforce strict lowercase: x, y.      |
++-----------------------+--------------------------------------+-------------------------------------------------+
+| False Asymptotes      | Visually inspecting nearly parallel  | Zoom out drastically or calculate slopes        |
+|                       | lines (m1 = 2.00, m2 = 2.01).        | algebraically to verify intersections.          |
++=======================+======================================+=================================================+
+</code></pre>
+<hr />
+<h3 id="32-hard-module-2-math-trap-taxonomy">3.2 Hard Module 2 Math Trap Taxonomy</h3>
+<h4 id="trap-1-difference-of-squares-product-of-roots">Trap 1: Difference of Squares &amp; Product of Roots</h4>
+<ul>
+<li><strong>Mathematical Blueprint</strong>: $(x^2 - c)(x^2 - d) = 0$ or disguised quadratics $x^4 - (c+d)x^2 + cd = 0$.</li>
+<li><strong>Traps Tested</strong>:</li>
+<li><em>Sum of All Solutions</em>: Because the roots are $+\sqrt{c}, -\sqrt{c}, +\sqrt{d}, -\sqrt{d}$, the sum of all roots is identically <strong>$0$</strong>. The trap is wasting 90 seconds calculating individual roots.</li>
+<li><em>Product of All Solutions</em>: Product $= (-\sqrt{c})(\sqrt{c})(-\sqrt{d})(\sqrt{d}) = (-c)(-d) = cd$.</li>
+<li><em>Real vs. Non-Real Constraints</em>: If $c &gt; 0$ and $d &lt; 0$, the equation $(x^2 - 25)(x^2 + 16) = 0$ has real roots $x = \pm 5$ and imaginary roots $x = \pm 4i$.<ul>
+<li>Stem: <em>"What is the product of all REAL solutions?"</em></li>
+<li>Trap: Using Vieta's formula on $x^4 - 9x^2 - 400 = 0$ yields $-400$.</li>
+<li>Correct Key: $(5)(-5) = -25$. Always filter for real roots!</li>
+</ul>
+</li>
+<li><strong>Vieta's Formulas for Fast Evaluation</strong>:</li>
+<li>For $ax^2 + bx + c = 0$: $\quad \text{Sum } = -\frac{b}{a}, \quad \text{Product } = \frac{c}{a}$</li>
+<li>For $ax^3 + bx^2 + cx + d = 0$: $\quad \text{Sum } = -\frac{b}{a}, \quad \text{Product } = -\frac{d}{a}$</li>
+</ul>
+<h4 id="trap-2-radical-equations-extraneous-solution-domain-constraints">Trap 2: Radical Equations &amp; Extraneous Solution Domain Constraints</h4>
+<ul>
+<li><strong>Mathematical Blueprint</strong>: $\sqrt{f(x)} = g(x)$ where $g(x) = mx + b$.</li>
+<li><strong>The Core Constraint</strong>: By definition of the principal square root, $\sqrt{f(x)} \ge 0$. Therefore, <strong>any valid solution must satisfy the domain constraint $g(x) \ge 0$</strong>.</li>
+<li><strong>Why Traps Occur</strong>: Squaring both sides ($\left(\sqrt{f(x)}\right)^2 = (g(x))^2$) destroys sign information because $(-k)^2 = (+k)^2$. This introduces false roots that make $g(x) &lt; 0$.</li>
+<li><strong>Example</strong>:
+  $$\sqrt{x + 2} = x \implies x + 2 = x^2 \implies x^2 - x - 2 = 0 \implies (x - 2)(x + 1) = 0$$
+  Candidate roots: $x = 2$ and $x = -1$.
+  Test $x = -1$: $\sqrt{-1 + 2} = \sqrt{1} = 1 \ne -1$ (Extraneous).
+  Valid root: $x = 2$ only.</li>
+<li><strong>Desmos Immunity Protocol</strong>: Type the exact original equation into Desmos: <code>\sqrt{x + 2} = x</code>. Desmos plots a vertical line <strong>only at $x = 2$</strong>. Desmos naturally rejects extraneous roots because it never squares both sides!</li>
+</ul>
+<h4 id="trap-3-non-linear-system-intersections-discriminant-analysis">Trap 3: Non-Linear System Intersections &amp; Discriminant Analysis</h4>
+<ul>
+<li><strong>Equated Quadratic Form</strong>: Intersection of line $y = mx + k$ and parabola $y = ax^2 + bx + c$:
+  $$ax^2 + (b - m)x + (c - k) = 0 \implies Ax^2 + Bx + C = 0$$</li>
+<li><strong>Discriminant Regimes ($\Delta = B^2 - 4AC$)</strong>:</li>
+<li>$\Delta &gt; 0$: Exactly 2 distinct real solutions (secant line).</li>
+<li>$\Delta = 0$: Exactly 1 real solution (tangent line; touches at vertex or single point).</li>
+<li>$\Delta &lt; 0$: 0 real solutions (disjoint curves).</li>
+<li><strong>Circle + Line Tangency Geometric Shortcut</strong>:</li>
+<li>Problem: <em>The horizontal line $y = c$ intersects the circle $x^2 + y^2 - 8x - 6y = 0$ at exactly one point. What is a possible value of $c$?</em></li>
+<li>Complete the square: $(x - 4)^2 + (y - 3)^2 = 25$. Center is $(4, 3)$, radius is $5$.</li>
+<li>A horizontal line is tangent at the absolute top or bottom of the circle:
+    $$c = k \pm r = 3 \pm 5 \implies c = 8 \quad \text{or} \quad c = -2$$</li>
+<li>Solved geometrically in 10 seconds without expanding quadratic discriminants.</li>
+</ul>
+<h4 id="trap-4-advanced-circle-equations">Trap 4: Advanced Circle Equations</h4>
+<ul>
+<li><strong>Standard Equation</strong>: $(x - h)^2 + (y - k)^2 = r^2$ with Center $(h, k)$ and Radius $r$.</li>
+<li><strong>Expanded Form</strong>: $Ax^2 + Ay^2 + Bx + Cy + D = 0$.</li>
+<li><strong>Trap Checklist</strong>:</li>
+<li><em>Coefficients on $x^2$ and $y^2$ greater than 1</em>:
+     $$3x^2 + 3y^2 - 18x + 24y - 60 = 0$$
+     <strong>Mandatory Step 0</strong>: Divide the entire equation by $3$ before completing the square:
+     $$x^2 + y^2 - 6x + 8y - 20 = 0 \implies (x - 3)^2 + (y + 4)^2 = 20 + 9 + 16 = 45$$
+     Radius is $\sqrt{45} = 3\sqrt{5}$, NOT $\sqrt{135}$.</li>
+<li><em>Radius vs. Diameter vs. Area Trap</em>: Problem asks for diameter ($2r$) or area ($\pi r^2$), but student enters $r$. Check the scratchpad Target Box!</li>
+<li><em>Tangent Line Perpendicularity</em>: The tangent line to a circle at point $P(x_1, y_1)$ is perpendicular to the radius connecting center $(h, k)$ to $P$:
+     $$m_{\text{radius}} = \frac{y_1 - k}{x_1 - h} \implies m_{\text{tangent}} = -\frac{1}{m_{\text{radius}}}$$</li>
+</ul>
+<h4 id="trap-5-advanced-geometry-trigonometry">Trap 5: Advanced Geometry &amp; Trigonometry</h4>
+<ul>
+<li><strong>Similar Figures Area Ratio ($k^2$) &amp; Volume Ratio ($k^3$)</strong>:</li>
+<li>If linear scale factor is $\frac{s_1}{s_2} = k$:<ul>
+<li>$\text{Perimeter Ratio} = k$</li>
+<li><strong>$\text{Area Ratio} = k^2$</strong></li>
+<li><strong>$\text{Volume Ratio} = k^3$</strong></li>
+</ul>
+</li>
+<li><em>Trap</em>: If Triangle $B$ has side lengths $3$ times Triangle $A$, its area is $3^2 = 9$ times larger, NOT $3$ times.</li>
+<li><strong>Co-Function Complementary Angle Identities</strong>:</li>
+<li>For complementary angles ($A + B = 90^\circ$ or $\pi/2$ radians):
+    $$\sin(A) = \cos(B) \quad \iff \quad \sin(\theta) = \cos(90^\circ - \theta)$$
+    $$\tan(A) = \frac{1}{\tan(B)}$$</li>
+<li><em>Classic SAT Item</em>: If $\sin(4x - 10^\circ) = \cos(3x + 16^\circ)$, what is $x$?
+    Set arguments complementary: $(4x - 10) + (3x + 16) = 90 \implies 7x + 6 = 90 \implies 7x = 84 \implies x = 12$.</li>
+<li><strong>Radians, Arc Length &amp; Sector Area</strong>:</li>
+<li>When $\theta$ is in <strong>radians</strong>:
+    $$\text{Arc Length } s = r\theta, \quad \text{Sector Area } A = \frac{1}{2}r^2\theta$$</li>
+<li>When $\theta$ is in <strong>degrees</strong>:
+    $$s = \frac{\theta}{360^\circ}(2\pi r), \quad A = \frac{\theta}{360^\circ}(\pi r^2)$$</li>
+</ul>
+<h4 id="trap-6-linear-system-parameter-alignment-a-k">Trap 6: Linear System Parameter Alignment ($a, k$)</h4>
+<p>Given system:
+$$\begin{cases} a_1 x + b_1 y = c_1 \ a_2 x + b_2 y = c_2 \end{cases}$$</p>
+<pre><code>+================================+======================================+=========================================+
+| System Condition               | Algebraic Ratio Condition            | Graphical Reality                       |
++================================+======================================+=========================================+
+| Infinitely Many Solutions      | a_1 / a_2 = b_1 / b_2 = c_1 / c_2    | Coincident lines (same slope, same y-int)|
+| No Solution                    | a_1 / a_2 = b_1 / b_2 != c_1 / c_2   | Strictly parallel lines (same m, diff b)|
+| Exactly One Solution           | a_1 / a_2 != b_1 / b_2               | Intersecting lines (distinct slopes)    |
++================================+======================================+=========================================+
+</code></pre>
+<ul>
+<li><strong>The Term Reordering Trap</strong>: College Board shuffles terms:
+  $$4x - 3y = 9 \quad \text{and} \quad ky + 8x = 18$$
+  Unwary students compare $4/k$. But the second equation has $y$ first!
+  <em>Mandatory Rule</em>: Align both equations in strict $Ax + By = C$ form before taking ratios:
+  $$\frac{4}{8} = \frac{-3}{k} \implies \frac{1}{2} = \frac{-3}{k} \implies k = -6$$</li>
+</ul>
+<hr />
+<h3 id="33-time-management-careless-error-prevention">3.3 Time Management &amp; Careless Error Prevention</h3>
+<h4 id="1-pacing-algorithms-module-1-vs-module-2">1. Pacing Algorithms: Module 1 vs. Module 2</h4>
+<pre><code>==================================================================================================
+MODULE 1 PACING (The Speed &amp; Buffer Run — 35 Minutes Total)
+--------------------------------------------------------------------------------------------------
+[00:00 - 12:00]  Questions 1–14: Rapid Blitz (approx. 50 sec/question via Desmos)
+[12:00 - 20:00]  Questions 15–22: Standard Solve (approx. 60 sec/question)
+[20:00 - 35:00]  15-MINUTE MANDATORY ALTERNATIVE REVIEW BUFFER:
+                 - Re-solve all 22 questions using an ALTERNATIVE method.
+                 - If solved algebraically, verify on Desmos.
+                 - If solved on Desmos, verify algebraically or backsolve.
+==================================================================================================
+MODULE 2 PACING (The Hard Adaptive Gauntlet — 35 Minutes Total)
+--------------------------------------------------------------------------------------------------
+[00:00 - 10:00]  Questions 1–10: Baseline Clearance (approx. 60 sec/question)
+[10:00 - 25:00]  Questions 11–22: Hard Module Execution (approx. 75–90 sec/question)
+                 *Enforce strict 90-second bail-out rule on stubborn questions.
+[25:00 - 35:00]  10-MINUTE PRECISION DOUBLE-CHECK BUFFER:
+                 - Re-solve flagged questions.
+                 - Audit SPR entries for negative signs and decimal formatting.
+                 - Execute Question-Ask Target Box Audit on every problem.
+==================================================================================================
+</code></pre>
+<h4 id="2-strategic-two-pass-question-ordering">2. Strategic Two-Pass Question Ordering</h4>
+<ul>
+<li><strong>Pass 1 (Questions 1 to 22)</strong>:</li>
+<li>Solve every question with an immediate solution path.</li>
+<li><strong>The 90-Second Rule</strong>: If after 60 seconds you lack a clear solution path, or arithmetic drags past 90 seconds without progress, <strong>FLAG</strong>, pick a placeholder answer, and immediately move forward.</li>
+<li><strong>Pass 2 (Flagged Quarantine)</strong>:</li>
+<li>Return to flagged questions during the 10-minute review buffer.</li>
+<li>Deploy alternative methods: Desmos slider sweeps, regression tables, or answer substitution.</li>
+</ul>
+<h4 id="3-the-bc-pivot-backsolving-protocol">3. The "B/C Pivot" Backsolving Protocol</h4>
+<ul>
+<li>When the problem asks for a single numerical value ($x, k$) and options are ordered numbers:</li>
+<li>Test Choice B or Choice C first (middle values).</li>
+<li>If Choice B works $\rightarrow$ Done.</li>
+<li>If Choice B yields a result that is too small $\rightarrow$ Eliminate A and B; test Choice C or D.</li>
+<li>If Choice B yields a result that is too large $\rightarrow$ Eliminate B, C, D; Choice A is the answer.</li>
+<li>Maximum required evaluations reduced from 4 to 2.</li>
+<li><strong>Desmos List Substitution</strong>: Enter choices as a list: <code>k = [12, 18, 24, 30]</code>. Desmos evaluates the equation across all 4 choices simultaneously.</li>
+</ul>
+<h4 id="4-the-scratchpad-target-box-protocol">4. The Scratchpad "Target Box" Protocol</h4>
+<p>Over 70% of 760–790 scorer misses stem from answering the <em>wrong question</em>.
+- <strong>The Habit</strong>: Before writing a single equation on your scratch paper, write:
+  $$\boxed{\text{ASK: } \underline{\hspace{2.5cm}}}$$
+  Examples: <code>ASK: 2x - 3</code>, <code>ASK: diameter 2r</code>, <code>ASK: y-intercept</code>.
+  When your calculation yields a number, compare it against the box before clicking Next.</p>
+<h4 id="5-bluebook-spr-mechanics-negative-entry-capability">5. Bluebook SPR Mechanics: Negative Entry Capability</h4>
+<ul>
+<li><strong>Critical Modern Update</strong>: Unlike the paper SAT where grid-in answers could never be negative, <strong>Digital SAT SPR answers CAN be negative</strong>.</li>
+<li>Bluebook accepts up to 5 characters for positive answers (e.g., <code>12345</code>, <code>12.34</code>, <code>1/234</code>) and up to <strong>6 characters for negative answers</strong> (e.g., <code>-12.34</code>, <code>-1/234</code>, <code>-0.333</code>).</li>
+<li>Fractions and terminating decimals are treated equivalently (e.g., <code>1/4</code> and <code>0.25</code> are both accepted). Repeating decimals must fill all available spaces (e.g., <code>2/3</code> can be entered as <code>2/3</code>, <code>.6666</code>, or <code>.6667</code>).</li>
+</ul>
+<hr />
+<h2 id="part-4-error-log-active-recall-architecture-r4">PART 4: ERROR LOG &amp; ACTIVE RECALL ARCHITECTURE (R4)</h2>
+<p>Passive test review (reading answer keys and nodding) produces under 20% long-term retention. 1500+ scorers use a systematic active recall architecture based on a 4-tier diagnostic classification and the "Rule of 3" re-solving protocol.</p>
+<h3 id="41-the-4-tier-diagnostic-classification-scheme">4.1 The 4-Tier Diagnostic Classification Scheme</h3>
+<pre><code>+========================================================================================================================+
+|                                      4-TIER ERROR CLASSIFICATION SCHEME                                                |
++===================+============================================+=======================================================+
+| Error Category    | Exact Definition &amp; Diagnostic Marker       | Mandatory Remediation Protocol                        |
++===================+============================================+=======================================================+
+| Tier 1: #Careless | Knew concept fully; mental arithmetic slip,| Enforce scratchpad structure: 1 step per line;        |
+|                   | sign dropped, or typing error.             | run alternative Desmos sanity check.                  |
++-------------------+--------------------------------------------+-------------------------------------------------------+
+| Tier 2: #Concept  | Did not know the underlying formula,       | Study Khan Academy / PrepPros chapter; formulate a    |
+|                   | theorem, grammar rule, or vocabulary word. | One-Sentence Law; solve 3 drill clones.               |
++-------------------+--------------------------------------------+-------------------------------------------------------+
+| Tier 3: #Misread  | Solved for wrong variable (x vs 2x+1);     | Enforce Scratchpad Target Box; highlight question     |
+|                   | ignored constraints (integer, x &gt; 0).      | ask before writing any equation.                      |
++-------------------+--------------------------------------------+-------------------------------------------------------+
+| Tier 4: #TimeTrap | Bogged down for &gt;2.5 minutes; panicked     | Train 90-second bail-out trigger; execute timed       |
+|                   | and rushed downstream easy questions.      | 28-minute module drills to build surplus buffer.      |
++===================+============================================+=======================================================+
+</code></pre>
+<h4 id="production-ready-error-log-schema-notion-spreadsheet-data-dictionary">Production-Ready Error Log Schema (Notion / Spreadsheet Data Dictionary)</h4>
+<pre><code>| Field Name               | Type      | Description / Example Value                                             |
+| :----------------------- | :-------- | :----------------------------------------------------------------------- |
+| Date Logged              | Date      | 2026-10-19                                                               |
+| Source Test              | Select    | Bluebook Practice Test 5                                                 |
+| Section &amp; Module         | Select    | Math Module 2 (Hard)                                                     |
+| Question #               | Number    | Q19                                                                      |
+| Question Stem / Screenshot| Text/Image| &quot;Line y = c is tangent to circle (x-3)^2 + (y-4)^2 = 25...&quot;              |
+| My Incorrect Answer      | Text      | c = 4                                                                    |
+| Official Correct Answer  | Text      | c = 9 or c = -1                                                          |
+| Error Tag                | Multi-Sel | #Concept, #Careless                                                      |
+| Root Cause Analysis      | Text      | Forgot that horizontal tangency occurs at k +/- r; attempted algebra.    |
+| Remediation Law (Rule)   | Text      | &quot;Horizontal tangency to a circle is ALWAYS c = k +/- r.&quot;                 |
+| Desmos Shortcut Path     | Text      | Graph circle; enter y = c with slider; slide to top and bottom extrema.  |
+| Solve Attempt 1 (Day 0)  | Checkbox  | [X] Solved cold unassisted                                               |
+| Solve Attempt 2 (+24h)   | Checkbox  | [X] Dual-path solve (algebra + Desmos)                                   |
+| Solve Attempt 3 (+7d)    | Checkbox  | [X] Timed solve under 75 seconds                                         |
+| Mastered Status          | Select    | MASTERED / LIQUIDATED                                                    |
+</code></pre>
+<hr />
+<h3 id="42-the-rule-of-3-re-solving-protocol">4.2 The "Rule of 3" Re-Solving Protocol</h3>
+<p>When a question is missed on a practice set or mock exam, <strong>THE STUDENT IS STRICTLY FORBIDDEN FROM READING THE OFFICIAL EXPLANATION</strong>. Reading the answer key creates the illusion of competence.</p>
+<pre><code>       [Question Missed on Practice Test or Question Bank]
+                               │
+                               ▼
+                 (DO NOT READ THE EXPLANATION!)
+                               │
+                               ▼
+==================================================================================================
+ATTEMPT 1: IMMEDIATE COLD RE-SOLVE (Day 0)
+- Attempt the problem on fresh blank paper with unlimited time.
+- If solved correctly: Error was Tier 1 (#Careless), Tier 3 (#Misread), or Tier 4 (#TimeTrap).
+- If still stuck after 10 minutes: Error is Tier 2 (#Concept). Now, and ONLY now,
+  read the official solution and document the missing concept.
+==================================================================================================
+                               │
+                               ▼
+==================================================================================================
+ATTEMPT 2: 24-HOUR REINFORCED RE-SOLVE (Day +1)
+- Re-solve the problem cold from memory without looking at notes.
+- Write TWO distinct solution pathways:
+    Pathway A: Standard Algebraic Proof / Text-Evidence Reference.
+    Pathway B: Desmos Shortcut / Elimination Heuristic.
+- Formulate your &quot;One-Sentence Remediation Law&quot;.
+==================================================================================================
+                               │
+                               ▼
+==================================================================================================
+ATTEMPT 3: 7-DAY TIMED RETENTION DRILL (Day +7)
+- Inject the problem into a mixed, timed 5-question mini-set.
+- Must execute the solution flawlessly under 75 seconds.
+- PASS: Mark item as &quot;LIQUIDATED / MASTERED&quot;.
+- FAIL: The 3-day cycle resets to Attempt 1; concept flagged as a Critical Vulnerability.
+==================================================================================================
+</code></pre>
+<hr />
+<h3 id="43-the-final-14-day-error-cycle-schedule-liquidation-protocol">4.3 The Final 14-Day Error Cycle Schedule (Liquidation Protocol)</h3>
+<pre><code>==================================================================================================
+                         14-DAY ERROR LOG LIQUIDATION PROTOCOL
+==================================================================================================
+Days 14–11: THE AUDIT &amp; TAXONOMY CLUSTER
+- Export and review the entire Error Log accumulated across all prep history.
+- Cluster errors by subdomain (e.g., Circle Geometry, Discriminants, Non-Essential Modifiers).
+- Execute targeted 10-question drills on your top 2 weakest subdomains using official 
+  College Board Question Bank items (Filtered: Hard, &quot;Exclude Active Questions&quot;).
+
+Days 10–7: SECOND-PASS ATTEMPT 3 MARATHON
+- Execute Attempt 3 timed re-solves on all outstanding unresolved log items.
+- Convert recurring careless errors into a personalized 1-page &quot;Careless Trigger Sheet&quot;
+  (e.g., &quot;I drop negative signs when distributing; I forget to check degree mode on Desmos&quot;).
+
+Days 6–4: TIMED SYNTHETIC MINI-SETS
+- Assemble 3 timed mock modules containing ONLY previously missed hard questions and their clones.
+- Enforce strict Module 1 (20/15) and Module 2 (25/10) pacing buffer splits.
+- Zero tolerance for missed question-asks or unboxed target variables.
+
+Days 3–2: FINAL LIQUIDATION &amp; DESMOS WEAPONIZATION DRILL
+- Re-solve the top 20 hardest math questions in your error bank using Desmos regressions 
+  and shortcuts exclusively.
+- Verify degree/radian toggle habits.
+- Ensure 100% of error log entries hold a &quot;MASTERED: YES&quot; status.
+
+Day 1: COGNITIVE PRESERVATION &amp; LOCK-IN
+- Cease all heavy problem solving.
+- 30-minute light review of the Desmos Quick-Reference Cheatsheet and Careless Trigger Sheet.
+- Rest, hydrate, and prepare for test-day execution.
+==================================================================================================
+</code></pre>
+<hr />
+<h2 id="master-checklist-for-test-day-execution">MASTER CHECKLIST FOR TEST DAY EXECUTION</h2>
+<pre><code>[ ] Circadian Lock: Woke up at 6:00 AM (14 consecutive days maintained).
+[ ] Bio-Fuel Breakfast: High protein + complex fats (eggs, avocado, sourdough); zero sugar spikes.
+[ ] Hardware Ready: Testing device fully charged; Bluebook updated; external mouse connected.
+[ ] Scratchpad Prepped: Folded sheets into 4 quadrants (numbered boxes).
+[ ] Neural Warm-Up Completed: 1 reading paragraph, 2 math, 2 grammar solved; answers unverified.
+[ ] Break Snack Packed: Half banana + 85% dark chocolate + walnuts + electrolyte water.
+[ ] RW Module 1: Two-pass discipline; zero careless misses on easy/medium items.
+[ ] RW Hard Module 2: Reverse Navigation deployed (Q15–27 blitz in 12 min; Q1–14 in 20 min).
+[ ] 10-Minute Break: Left testing room; brisk walk; 5 physiological sighs; zero exam chatter.
+[ ] Math Module 1: 20/15 pacing split; verified Degree mode via sin(30) = 0.5.
+[ ] Math Hard Module 2: Desmos time-banking (Q1–14 in 15 min; 20 min war chest for Q15–22).
+[ ] Scratchpad Target Box: Verified ASK variable before clicking Next on every math question.
+[ ] SPR Verification: Checked negative signs, decimals, and rounding constraints.
+</code></pre>
+        </article>
+    </main>
+
+    <script>
+        // Transform the TOC into a collapsible accordion
+        function setupCollapsibleTOC() {
+            const listItems = document.querySelectorAll('.toc-wrapper li');
+            
+            listItems.forEach(li => {
+                const childUl = li.querySelector(':scope > ul');
+                if (childUl) {
+                    const link = li.querySelector(':scope > a');
+                    if (!link) return;
+
+                    const headerDiv = document.createElement('div');
+                    headerDiv.className = 'toc-item-header';
+                    
+                    li.insertBefore(headerDiv, link);
+                    headerDiv.appendChild(link);
+                    
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'toc-toggle';
+                    toggleBtn.innerHTML = '▶';
+                    toggleBtn.title = 'Aç / Kapat';
+                    headerDiv.appendChild(toggleBtn);
+                    
+                    toggleBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const isOpen = childUl.classList.toggle('open');
+                        toggleBtn.innerHTML = isOpen ? '▼' : '▶';
+                        toggleBtn.style.color = isOpen ? '#60a5fa' : '#64748b';
+                    });
+
+                    // Clicking link also unfolds child list
+                    link.addEventListener('click', () => {
+                        childUl.classList.add('open');
+                        toggleBtn.innerHTML = '▼';
+                        toggleBtn.style.color = '#60a5fa';
+                    });
+                }
+            });
+
+            // By default, open only top-level (first level) sections
+            const topLevelUl = document.querySelector('.toc-wrapper > .toc > ul');
+            if (topLevelUl) {
+                const firstChildUl = topLevelUl.querySelector(':scope > li > ul');
+                if (firstChildUl) {
+                    firstChildUl.classList.add('open');
+                    const btn = topLevelUl.querySelector(':scope > li > .toc-item-header > .toc-toggle');
+                    if (btn) btn.innerHTML = '▼';
+                }
+            }
+        }
+
+        function expandAllTOC() {
+            document.querySelectorAll('.toc-wrapper ul ul').forEach(ul => {
+                ul.classList.add('open');
+            });
+            document.querySelectorAll('.toc-toggle').forEach(btn => {
+                btn.innerHTML = '▼';
+                btn.style.color = '#60a5fa';
+            });
+        }
+
+        function collapseAllTOC() {
+            document.querySelectorAll('.toc-wrapper ul ul').forEach(ul => {
+                ul.classList.remove('open');
+            });
+            document.querySelectorAll('.toc-toggle').forEach(btn => {
+                btn.innerHTML = '▶';
+                btn.style.color = '#64748b';
+            });
+        }
+
+        function filterTOC() {
+            const query = document.getElementById('toc-search').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.toc-wrapper li');
+            
+            if (query.length > 0) {
+                expandAllTOC();
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            } else {
+                items.forEach(item => item.style.display = '');
+                collapseAllTOC();
+                // re-open top level
+                const topLevelUl = document.querySelector('.toc-wrapper > .toc > ul');
+                if (topLevelUl) {
+                    const firstChildUl = topLevelUl.querySelector(':scope > li > ul');
+                    if (firstChildUl) firstChildUl.classList.add('open');
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('sat-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('sat-theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('sat-theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // Run setup on load
+        setupCollapsibleTOC();
+    </script>
+</body>
+</html>
