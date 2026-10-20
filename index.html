@@ -13,35 +13,41 @@
             --bg-surface: #ffffff;
             --bg-sidebar: #0f172a;
             --text-main: #0f172a;
-            --text-muted: #334155;
-            --text-sidebar: #f1f5f9;
+            --text-muted: #475569;
+            --text-sidebar: #f8fafc;
             --sidebar-muted: #94a3b8;
+            --sidebar-hover: rgba(255, 255, 255, 0.08);
+            --sidebar-active: #38bdf8;
             --primary: #2563eb;
             --primary-light: #eff6ff;
             --border: #e2e8f0;
-            --code-inline-bg: #f1f5f9;
+            --sidebar-border: rgba(255, 255, 255, 0.1);
+            --code-inline-bg: #e2e8f0;
             --code-inline-text: #0f172a;
             --code-inline-border: #cbd5e1;
-            --code-block-bg: #0f172a;
+            --code-block-bg: #090d16;
             --code-block-text: #f8fafc;
-            --sidebar-width: 340px;
+            --sidebar-width: 380px;
         }
 
         [data-theme="dark"] {
-            --bg-page: #090d16;
-            --bg-surface: #111827;
-            --bg-sidebar: #070a12;
+            --bg-page: #080c14;
+            --bg-surface: #0f172a;
+            --bg-sidebar: #040711;
             --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --text-sidebar: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-sidebar: #f8fafc;
             --sidebar-muted: #64748b;
+            --sidebar-hover: rgba(255, 255, 255, 0.06);
+            --sidebar-active: #38bdf8;
             --primary: #38bdf8;
             --primary-light: #1e293b;
             --border: #1e293b;
+            --sidebar-border: rgba(255, 255, 255, 0.08);
             --code-inline-bg: #1e293b;
             --code-inline-text: #38bdf8;
             --code-inline-border: #334155;
-            --code-block-bg: #030712;
+            --code-block-bg: #020408;
             --code-block-text: #f8fafc;
         }
 
@@ -64,7 +70,7 @@
             min-height: 100vh;
         }
 
-        /* Sidebar Styling */
+        /* Sidebar Architecture */
         aside {
             width: var(--sidebar-width);
             background-color: var(--bg-sidebar);
@@ -74,10 +80,10 @@
             top: 0;
             left: 0;
             overflow-y: auto;
-            padding: 20px 16px;
+            padding: 24px 18px 40px 18px;
             display: flex;
             flex-direction: column;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 1px solid var(--sidebar-border);
             z-index: 50;
         }
 
@@ -93,10 +99,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--sidebar-border);
         }
         .brand-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.02em;
@@ -109,17 +117,18 @@
             padding: 2px 8px;
             border-radius: 999px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* Search Box */
         .search-box {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .search-box input {
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 8px;
             color: #ffffff;
             font-size: 0.85rem;
@@ -129,29 +138,33 @@
         .search-box input:focus {
             border-color: #38bdf8;
             background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+        }
+        .search-box input::placeholder {
+            color: #94a3b8;
         }
 
-        /* Bulletproof Expand/Collapse Buttons */
+        /* TOC Actions (All Expand / Collapse) */
         .toc-actions {
             display: flex;
             gap: 8px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .action-btn {
             flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
             color: #f1f5f9;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 6px;
         }
         .action-btn:hover {
             background: #2563eb;
@@ -159,83 +172,122 @@
             color: #ffffff;
         }
 
-        /* Hierarchical TOC */
-        .toc-container {
-            flex: 1;
-            overflow-y: auto;
-        }
-        .toc-group {
-            margin-bottom: 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .toc-item {
+        /* Clean Hierarchical TOC */
+        .toc-list {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 6px;
-            border-radius: 6px;
-        }
-        .toc-item.l2 {
-            background: rgba(255, 255, 255, 0.05);
-            margin-bottom: 2px;
-        }
-        .toc-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .toc-btn {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.75rem;
-            cursor: pointer;
-            padding: 2px 6px;
-            border-radius: 4px;
-            line-height: 1;
-            transition: color 0.15s;
-        }
-        .toc-btn:hover {
-            color: #38bdf8;
-        }
-        .toc-link {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            flex: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .toc-link.l2-link {
-            font-weight: 700;
-            color: #f8fafc;
-            font-size: 0.82rem;
-        }
-        .toc-link.active {
-            color: #38bdf8 !important;
-            font-weight: 800;
-        }
-        .toc-subgroup {
-            padding-left: 14px;
-            margin-left: 6px;
-            border-left: 1px solid rgba(255, 255, 255, 0.12);
-            display: block; /* default open */
-        }
-        .toc-item.l3 {
-            padding: 3px 6px;
-        }
-        .toc-item.l4 {
-            padding: 2px 6px;
-            padding-left: 10px;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        /* Main Content */
+        .toc-group {
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: background 0.15s;
+        }
+        .toc-group:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toc-chevron {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            width: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+        .chevron-dot {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .toc-header-link {
+            color: #f8fafc;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 700;
+            flex: 1;
+            line-height: 1.35;
+            transition: color 0.15s;
+        }
+        .toc-header:hover .toc-header-link {
+            color: #38bdf8;
+        }
+
+        .sub-badge {
+            font-size: 0.65rem;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* Sublist (Level 3) */
+        .toc-sublist {
+            padding: 4px 10px 10px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-subitem {
+            display: flex;
+            align-items: center;
+        }
+
+        .toc-sublink {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.80rem;
+            line-height: 1.45;
+            padding: 5px 8px;
+            border-radius: 6px;
+            width: 100%;
+            transition: all 0.15s;
+        }
+        .toc-sublink:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            padding-left: 12px;
+        }
+        .toc-sublink.active {
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .sub-bullet {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .toc-sublink:hover .sub-bullet {
+            color: #38bdf8;
+        }
+
+        /* Main Content Container */
         main {
             margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 40px 64px 100px 64px;
-            max-width: 1080px;
+            padding: 40px 64px 120px 64px;
+            max-width: 1120px;
         }
 
         .header-bar {
@@ -271,38 +323,39 @@
             border-color: var(--primary);
         }
 
-        /* Typography & Reading Experience (Ultra Contrast) */
+        /* Article & Typography (High Contrast) */
         article {
             background: var(--bg-surface);
-            padding: 48px;
-            border-radius: 12px;
+            padding: 54px 60px;
+            border-radius: 16px;
             border: 1px solid var(--border);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
+
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.25rem;
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: -0.03em;
-            margin: 28px 0 16px 0;
+            margin: 32px 0 20px 0;
             line-height: 1.25;
-            padding-bottom: 12px;
+            padding-bottom: 14px;
             border-bottom: 2px solid var(--border);
         }
         h2 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: -0.02em;
-            margin: 36px 0 16px 0;
-            padding-bottom: 8px;
+            margin: 44px 0 20px 0;
+            padding-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
         h3 {
             font-size: 1.25rem;
             font-weight: 700;
             color: #2563eb;
-            margin: 28px 0 12px 0;
+            margin: 32px 0 14px 0;
         }
         [data-theme="dark"] h3 {
             color: #38bdf8;
@@ -311,17 +364,20 @@
             font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-main);
-            margin: 20px 0 8px 0;
+            margin: 24px 0 10px 0;
         }
+
         p {
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             color: var(--text-main);
-            font-size: 1rem;
+            font-size: 1.02rem;
+            line-height: 1.8;
             font-weight: 450;
         }
         ul, ol {
-            margin: 12px 0 20px 24px;
+            margin: 14px 0 22px 28px;
             color: var(--text-main);
+            line-height: 1.75;
         }
         li {
             margin-bottom: 8px;
@@ -331,13 +387,48 @@
             font-weight: 800;
         }
 
+        /* Blockquotes with Vibrant Accent */
+        blockquote {
+            background: #f1f5f9;
+            border-left: 5px solid #2563eb;
+            color: #1e293b;
+            padding: 16px 22px;
+            border-radius: 0 10px 10px 0;
+            margin: 22px 0;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+        [data-theme="dark"] blockquote {
+            background: #111827;
+            border-left: 5px solid #38bdf8;
+            color: #e2e8f0;
+        }
+
+        /* Links in Article */
+        article a {
+            color: #2563eb;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+        article a:hover {
+            color: #1d4ed8;
+        }
+        [data-theme="dark"] article a {
+            color: #38bdf8;
+        }
+        [data-theme="dark"] article a:hover {
+            color: #7dd3fc;
+        }
+
         /* High-Contrast Inline Code */
         code {
             font-family: 'JetBrains Mono', monospace;
             background-color: var(--code-inline-bg);
             color: var(--code-inline-text);
             padding: 2px 7px;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 0.9em;
             font-weight: 600;
             border: 1px solid var(--code-inline-border);
@@ -347,13 +438,13 @@
         pre {
             background: var(--code-block-bg);
             color: var(--code-block-text);
-            padding: 18px 22px;
-            border-radius: 10px;
+            padding: 20px 24px;
+            border-radius: 12px;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 24px 0;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.88rem;
-            line-height: 1.55;
+            line-height: 1.6;
             border: 1px solid var(--border);
         }
         pre code {
@@ -364,18 +455,19 @@
             font-weight: 400;
         }
 
-        /* High-Contrast Tables */
+        /* Tables (Stripe/Vercel Style) */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 24px 0;
+            margin: 28px 0;
             font-size: 0.92rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
         th, td {
-            padding: 12px 16px;
+            padding: 12px 18px;
             text-align: left;
             border: 1px solid var(--border);
         }
@@ -405,12 +497,12 @@
 <body>
     <aside>
         <div class="brand">
-            <span class="brand-title">🎯 SAT 1500+</span>
-            <span class="brand-badge">MASTER</span>
+            <span class="brand-title">🎯 SAT 1500+ MASTER</span>
+            <span class="brand-badge">Warwick 2027</span>
         </div>
 
         <div class="search-box">
-            <input type="text" id="toc-search" placeholder="Konu, formül veya kural ara..." onkeyup="searchTOC()">
+            <input type="text" id="toc-search" placeholder="Konu, formül veya soru tipi ara..." oninput="searchTOC()">
         </div>
 
         <div class="toc-actions">
@@ -419,401 +511,207 @@
         </div>
 
         <div class="toc-container" id="toc-root">
-            <div class="toc-container">
-
-            <div class="toc-group" data-title="executive architecture & test engine specifications">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#executive-architecture-test-engine-specifications" class="toc-link l2-link" onclick="highlightLink(this)">EXECUTIVE ARCHITECTURE & TEST ENGINE SPECIFICATIONS</a>
-                </div>
-                <div class="toc-subgroup">
-            
-
-                <div class="toc-item l3" data-title="1. multistage adaptive engine mechanics">
-                    <a href="#1-multistage-adaptive-engine-mechanics" class="toc-link l3-link" onclick="highlightLink(this)">1. Multistage Adaptive Engine Mechanics</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="2. pretest / unscored questions">
-                    <a href="#2-pretest-unscored-questions" class="toc-link l3-link" onclick="highlightLink(this)">2. Pretest / Unscored Questions</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="3. item response theory (irt) scoring asymmetry">
-                    <a href="#3-item-response-theory-irt-scoring-asymmetry" class="toc-link l3-link" onclick="highlightLink(this)">3. Item Response Theory (IRT) Scoring Asymmetry</a>
-                </div>
-            
-</div></div>
-
-            <div class="toc-group" data-title="part 1: exhaustive community & scorer mining (r1)">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#part-1-exhaustive-community-scorer-mining-r1" class="toc-link l2-link" onclick="highlightLink(this)">PART 1: EXHAUSTIVE COMMUNITY & SCORER MINING (R1)</a>
-                </div>
-                <div class="toc-subgroup">
-            
-
-                <div class="toc-item l3" data-title="1.1 the 1500+ scorer resource tier list (s-tier to c-tier)">
-                    <a href="#11-the-1500-scorer-resource-tier-list-s-tier-to-c-tier" class="toc-link l3-link" onclick="highlightLink(this)">1.1 The 1500+ Scorer Resource Tier List (S-Tier to C-Tier)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="detailed resource evaluations & pitfall warnings">
-                    <a href="#detailed-resource-evaluations-pitfall-warnings" class="toc-link l4-link" onclick="highlightLink(this)">Detailed Resource Evaluations & Pitfall Warnings</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="1.2 actionable study schedules & pacing blueprints">
-                    <a href="#12-actionable-study-schedules-pacing-blueprints" class="toc-link l3-link" onclick="highlightLink(this)">1.2 Actionable Study Schedules & Pacing Blueprints</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="blueprint 1: the 3-month standard architecture (12 weeks — 1250/1350 \rightarrow 1530+)">
-                    <a href="#blueprint-1-the-3-month-standard-architecture-12-weeks-12501350-rightarrow-1530" class="toc-link l4-link" onclick="highlightLink(this)">Blueprint 1: The 3-Month Standard Architecture (12 Weeks — 1250/1350 \rightarrow 1530+)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="blueprint 2: the 6-week intensive sprint (1380/1450 \rightarrow 1530+)">
-                    <a href="#blueprint-2-the-6-week-intensive-sprint-13801450-rightarrow-1530" class="toc-link l4-link" onclick="highlightLink(this)">Blueprint 2: The 6-Week Intensive Sprint (1380/1450 \rightarrow 1530+)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="blueprint 3: the 2-week emergency cram (14-day triage — rapid 60–100 point lift)">
-                    <a href="#blueprint-3-the-2-week-emergency-cram-14-day-triage-rapid-60100-point-lift" class="toc-link l4-link" onclick="highlightLink(this)">Blueprint 3: The 2-Week Emergency Cram (14-Day Triage — Rapid 60–100 Point Lift)</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="1.3 breaking the 1400–1450 plateau">
-                    <a href="#13-breaking-the-14001450-plateau" class="toc-link l3-link" onclick="highlightLink(this)">1.3 Breaking the 1400–1450 Plateau</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. root cause analysis: 1400 knowledge vs. 1500+ execution">
-                    <a href="#1-root-cause-analysis-1400-knowledge-vs-1500-execution" class="toc-link l4-link" onclick="highlightLink(this)">1. Root Cause Analysis: 1400 Knowledge vs. 1500+ Execution</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. the four deadly traps keeping scorers under 1500">
-                    <a href="#2-the-four-deadly-traps-keeping-scorers-under-1500" class="toc-link l4-link" onclick="highlightLink(this)">2. The Four Deadly Traps Keeping Scorers Under 1500</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. hard module 2 pacing algorithms">
-                    <a href="#3-hard-module-2-pacing-algorithms" class="toc-link l4-link" onclick="highlightLink(this)">3. Hard Module 2 Pacing Algorithms</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="1.4 final 2–3 weeks peak performance & biological protocol">
-                    <a href="#14-final-23-weeks-peak-performance-biological-protocol" class="toc-link l3-link" onclick="highlightLink(this)">1.4 Final 2–3 Weeks Peak Performance & Biological Protocol</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. the tapering calendar (day -21 to day 0)">
-                    <a href="#1-the-tapering-calendar-day-21-to-day-0" class="toc-link l4-link" onclick="highlightLink(this)">1. The Tapering Calendar (Day -21 to Day 0)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. sleep optimization & the gradual 10-day circadian phase shift">
-                    <a href="#2-sleep-optimization-the-gradual-10-day-circadian-phase-shift" class="toc-link l4-link" onclick="highlightLink(this)">2. Sleep Optimization & The Gradual 10-Day Circadian Phase Shift</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. test-day nutrition & blood-glucose stability protocol">
-                    <a href="#3-test-day-nutrition-blood-glucose-stability-protocol" class="toc-link l4-link" onclick="highlightLink(this)">3. Test-Day Nutrition & Blood-Glucose Stability Protocol</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. cognitive priming neural warm-up & transit protocol (test day 06:00 – 07:45 am)">
-                    <a href="#4-cognitive-priming-neural-warm-up-transit-protocol-test-day-0600-0745-am" class="toc-link l4-link" onclick="highlightLink(this)">4. Cognitive Priming Neural Warm-Up & Transit Protocol (Test Day 06:00 – 07:45 AM)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="5. bluebook physical testing ergonomics">
-                    <a href="#5-bluebook-physical-testing-ergonomics" class="toc-link l4-link" onclick="highlightLink(this)">5. Bluebook Physical Testing Ergonomics</a>
-                </div>
-            
-</div></div>
-
-            <div class="toc-group" data-title="part 2: digital sat rw 700+ master strategy & cheatsheet (r2)">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#part-2-digital-sat-rw-700-master-strategy-cheatsheet-r2" class="toc-link l2-link" onclick="highlightLink(this)">PART 2: DIGITAL SAT RW 700+ MASTER STRATEGY & CHEATSHEET (R2)</a>
-                </div>
-                <div class="toc-subgroup">
-            
-
-                <div class="toc-item l3" data-title="2.1 craft & structure and information & ideas">
-                    <a href="#21-craft-structure-and-information-ideas" class="toc-link l3-link" onclick="highlightLink(this)">2.1 Craft & Structure and Information & Ideas</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. micro-passage architecture & functional sentence tagging">
-                    <a href="#1-micro-passage-architecture-functional-sentence-tagging" class="toc-link l4-link" onclick="highlightLink(this)">1. Micro-Passage Architecture & Functional Sentence Tagging</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. the four fatal distractor traps & elimination heuristics">
-                    <a href="#2-the-four-fatal-distractor-traps-elimination-heuristics" class="toc-link l4-link" onclick="highlightLink(this)">2. The Four Fatal Distractor Traps & Elimination Heuristics</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. dual-passage comparison strategy (text 1 vs. text 2)">
-                    <a href="#3-dual-passage-comparison-strategy-text-1-vs-text-2" class="toc-link l4-link" onclick="highlightLink(this)">3. Dual-Passage Comparison Strategy (Text 1 vs. Text 2)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. command of evidence dual-filter verification">
-                    <a href="#4-command-of-evidence-dual-filter-verification" class="toc-link l4-link" onclick="highlightLink(this)">4. Command of Evidence Dual-Filter Verification</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="2.2 words in context & vocabulary mastery">
-                    <a href="#22-words-in-context-vocabulary-mastery" class="toc-link l3-link" onclick="highlightLink(this)">2.2 Words in Context & Vocabulary Mastery</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. the 3-step execution protocol: "cover, predict, match"">
-                    <a href="#1-the-3-step-execution-protocol-cover-predict-match" class="toc-link l4-link" onclick="highlightLink(this)">1. The 3-Step Execution Protocol: "Cover, Predict, Match"</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. context-clue decoding mechanics">
-                    <a href="#2-context-clue-decoding-mechanics" class="toc-link l4-link" onclick="highlightLink(this)">2. Context-Clue Decoding Mechanics</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. high-frequency morphology master reference">
-                    <a href="#3-high-frequency-morphology-master-reference" class="toc-link l4-link" onclick="highlightLink(this)">3. High-Frequency Morphology Master Reference</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. the 40 essential hard-module dsat vocabulary words">
-                    <a href="#4-the-40-essential-hard-module-dsat-vocabulary-words" class="toc-link l4-link" onclick="highlightLink(this)">4. The 40 Essential Hard-Module dSAT Vocabulary Words</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="2.3 standard english conventions: zero-tolerance cheat card">
-                    <a href="#23-standard-english-conventions-zero-tolerance-cheat-card" class="toc-link l3-link" onclick="highlightLink(this)">2.3 Standard English Conventions: Zero-Tolerance Cheat Card</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. clause architecture: independent vs. dependent">
-                    <a href="#1-clause-architecture-independent-vs-dependent" class="toc-link l4-link" onclick="highlightLink(this)">1. Clause Architecture: Independent vs. Dependent</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. the seven inviolable sentence boundary formulas">
-                    <a href="#2-the-seven-inviolable-sentence-boundary-formulas" class="toc-link l4-link" onclick="highlightLink(this)">2. The Seven Inviolable Sentence Boundary Formulas</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. semicolon & period equivalence elimination rule">
-                    <a href="#3-semicolon-period-equivalence-elimination-rule" class="toc-link l4-link" onclick="highlightLink(this)">3. Semicolon & Period Equivalence Elimination Rule</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. colons (:) vs. single em-dashes (—)">
-                    <a href="#4-colons-vs-single-em-dashes" class="toc-link l4-link" onclick="highlightLink(this)">4. Colons (:) vs. Single Em-Dashes (—)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="5. symmetrical punctuation for parenthetical elements">
-                    <a href="#5-symmetrical-punctuation-for-parenthetical-elements" class="toc-link l4-link" onclick="highlightLink(this)">5. Symmetrical Punctuation for Parenthetical Elements</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="6. restrictive vs. non-essential modifiers: names, titles, and that vs. which">
-                    <a href="#6-restrictive-vs-non-essential-modifiers-names-titles-and-that-vs-which" class="toc-link l4-link" onclick="highlightLink(this)">6. Restrictive vs. Non-Essential Modifiers: Names, Titles, and That vs. Which</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="7. the six inviolable zero-punctuation zones">
-                    <a href="#7-the-six-inviolable-zero-punctuation-zones" class="toc-link l4-link" onclick="highlightLink(this)">7. The Six Inviolable Zero-Punctuation Zones</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="8. subject-verb agreement mechanics">
-                    <a href="#8-subject-verb-agreement-mechanics" class="toc-link l4-link" onclick="highlightLink(this)">8. Subject-Verb Agreement Mechanics</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="9. pronoun-antecedent agreement & ambiguity">
-                    <a href="#9-pronoun-antecedent-agreement-ambiguity" class="toc-link l4-link" onclick="highlightLink(this)">9. Pronoun-Antecedent Agreement & Ambiguity</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="10. modifier placement: dangling and misplaced modifiers">
-                    <a href="#10-modifier-placement-dangling-and-misplaced-modifiers" class="toc-link l4-link" onclick="highlightLink(this)">10. Modifier Placement: Dangling and Misplaced Modifiers</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="2.4 transitions & rhetorical synthesis">
-                    <a href="#24-transitions-rhetorical-synthesis" class="toc-link l3-link" onclick="highlightLink(this)">2.4 Transitions & Rhetorical Synthesis</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. rhetorical synthesis (bullet point questions): the 30-second algorithm">
-                    <a href="#1-rhetorical-synthesis-bullet-point-questions-the-30-second-algorithm" class="toc-link l4-link" onclick="highlightLink(this)">1. Rhetorical Synthesis (Bullet Point Questions): The 30-Second Algorithm</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. transitions mastery: the relationship categorization matrix">
-                    <a href="#2-transitions-mastery-the-relationship-categorization-matrix" class="toc-link l4-link" onclick="highlightLink(this)">2. Transitions Mastery: The Relationship Categorization Matrix</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. high-yield transition elimination heuristics">
-                    <a href="#3-high-yield-transition-elimination-heuristics" class="toc-link l4-link" onclick="highlightLink(this)">3. High-Yield Transition Elimination Heuristics</a>
-                </div>
-            
-</div></div>
-
-            <div class="toc-group" data-title="part 3: digital sat math 780–800 master strategy & desmos mastery (r3)">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#part-3-digital-sat-math-780800-master-strategy-desmos-mastery-r3" class="toc-link l2-link" onclick="highlightLink(this)">PART 3: DIGITAL SAT MATH 780–800 MASTER STRATEGY & DESMOS MASTERY (R3)</a>
-                </div>
-                <div class="toc-subgroup">
-            
-
-                <div class="toc-item l3" data-title="3.1 desmos advanced exploitation cheatsheet (ready-to-use)">
-                    <a href="#31-desmos-advanced-exploitation-cheatsheet-ready-to-use" class="toc-link l3-link" onclick="highlightLink(this)">3.1 Desmos Advanced Exploitation Cheatsheet (Ready-to-Use)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. the step-by-step table fitting algorithm">
-                    <a href="#1-the-step-by-step-table-fitting-algorithm" class="toc-link l4-link" onclick="highlightLink(this)">1. The Step-by-Step Table Fitting Algorithm</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. the slider system for parameter exploration (k)">
-                    <a href="#2-the-slider-system-for-parameter-exploration-k" class="toc-link l4-link" onclick="highlightLink(this)">2. The Slider System for Parameter Exploration (k)</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. direct inspection mechanics">
-                    <a href="#3-direct-inspection-mechanics" class="toc-link l4-link" onclick="highlightLink(this)">3. Direct Inspection Mechanics</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. inequalities & feasible regions">
-                    <a href="#4-inequalities-feasible-regions" class="toc-link l4-link" onclick="highlightLink(this)">4. Inequalities & Feasible Regions</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="5. conversion, angle mode & arithmetic syntax">
-                    <a href="#5-conversion-angle-mode-arithmetic-syntax" class="toc-link l4-link" onclick="highlightLink(this)">5. Conversion, Angle Mode & Arithmetic Syntax</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="6. desmos pitfalls, failure modes & mitigation">
-                    <a href="#6-desmos-pitfalls-failure-modes-mitigation" class="toc-link l4-link" onclick="highlightLink(this)">6. Desmos Pitfalls, Failure Modes & Mitigation</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="3.2 hard module 2 math trap taxonomy">
-                    <a href="#32-hard-module-2-math-trap-taxonomy" class="toc-link l3-link" onclick="highlightLink(this)">3.2 Hard Module 2 Math Trap Taxonomy</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 1: difference of squares & product of roots">
-                    <a href="#trap-1-difference-of-squares-product-of-roots" class="toc-link l4-link" onclick="highlightLink(this)">Trap 1: Difference of Squares & Product of Roots</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 2: radical equations & extraneous solution domain constraints">
-                    <a href="#trap-2-radical-equations-extraneous-solution-domain-constraints" class="toc-link l4-link" onclick="highlightLink(this)">Trap 2: Radical Equations & Extraneous Solution Domain Constraints</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 3: non-linear system intersections & discriminant analysis">
-                    <a href="#trap-3-non-linear-system-intersections-discriminant-analysis" class="toc-link l4-link" onclick="highlightLink(this)">Trap 3: Non-Linear System Intersections & Discriminant Analysis</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 4: advanced circle equations">
-                    <a href="#trap-4-advanced-circle-equations" class="toc-link l4-link" onclick="highlightLink(this)">Trap 4: Advanced Circle Equations</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 5: advanced geometry & trigonometry">
-                    <a href="#trap-5-advanced-geometry-trigonometry" class="toc-link l4-link" onclick="highlightLink(this)">Trap 5: Advanced Geometry & Trigonometry</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="trap 6: linear system parameter alignment (a, k)">
-                    <a href="#trap-6-linear-system-parameter-alignment-a-k" class="toc-link l4-link" onclick="highlightLink(this)">Trap 6: Linear System Parameter Alignment (a, k)</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="3.3 time management & careless error prevention">
-                    <a href="#33-time-management-careless-error-prevention" class="toc-link l3-link" onclick="highlightLink(this)">3.3 Time Management & Careless Error Prevention</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="1. pacing algorithms: module 1 vs. module 2">
-                    <a href="#1-pacing-algorithms-module-1-vs-module-2" class="toc-link l4-link" onclick="highlightLink(this)">1. Pacing Algorithms: Module 1 vs. Module 2</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="2. strategic two-pass question ordering">
-                    <a href="#2-strategic-two-pass-question-ordering" class="toc-link l4-link" onclick="highlightLink(this)">2. Strategic Two-Pass Question Ordering</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="3. the "b/c pivot" backsolving protocol">
-                    <a href="#3-the-bc-pivot-backsolving-protocol" class="toc-link l4-link" onclick="highlightLink(this)">3. The "B/C Pivot" Backsolving Protocol</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="4. the scratchpad "target box" protocol">
-                    <a href="#4-the-scratchpad-target-box-protocol" class="toc-link l4-link" onclick="highlightLink(this)">4. The Scratchpad "Target Box" Protocol</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="5. bluebook spr mechanics: negative entry capability">
-                    <a href="#5-bluebook-spr-mechanics-negative-entry-capability" class="toc-link l4-link" onclick="highlightLink(this)">5. Bluebook SPR Mechanics: Negative Entry Capability</a>
-                </div>
-            
-</div></div>
-
-            <div class="toc-group" data-title="part 4: error log & active recall architecture (r4)">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#part-4-error-log-active-recall-architecture-r4" class="toc-link l2-link" onclick="highlightLink(this)">PART 4: ERROR LOG & ACTIVE RECALL ARCHITECTURE (R4)</a>
-                </div>
-                <div class="toc-subgroup">
-            
-
-                <div class="toc-item l3" data-title="4.1 the 4-tier diagnostic classification scheme">
-                    <a href="#41-the-4-tier-diagnostic-classification-scheme" class="toc-link l3-link" onclick="highlightLink(this)">4.1 The 4-Tier Diagnostic Classification Scheme</a>
-                </div>
-            
-
-                <div class="toc-item l4" data-title="production-ready error log schema (notion / spreadsheet data dictionary)">
-                    <a href="#production-ready-error-log-schema-notion-spreadsheet-data-dictionary" class="toc-link l4-link" onclick="highlightLink(this)">Production-Ready Error Log Schema (Notion / Spreadsheet Data Dictionary)</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="4.2 the "rule of 3" re-solving protocol">
-                    <a href="#42-the-rule-of-3-re-solving-protocol" class="toc-link l3-link" onclick="highlightLink(this)">4.2 The "Rule of 3" Re-Solving Protocol</a>
-                </div>
-            
-
-                <div class="toc-item l3" data-title="4.3 the final 14-day error cycle schedule (liquidation protocol)">
-                    <a href="#43-the-final-14-day-error-cycle-schedule-liquidation-protocol" class="toc-link l3-link" onclick="highlightLink(this)">4.3 The Final 14-Day Error Cycle Schedule (Liquidation Protocol)</a>
-                </div>
-            
-</div></div>
-
-            <div class="toc-group" data-title="master checklist for test day execution">
-                <div class="toc-item l2">
-                    <button class="toc-btn" onclick="toggleGroup(this)">▼</button>
-                    <a href="#master-checklist-for-test-day-execution" class="toc-link l2-link" onclick="highlightLink(this)">MASTER CHECKLIST FOR TEST DAY EXECUTION</a>
-                </div>
-                <div class="toc-subgroup">
-            
-</div></div>
+            <div class="toc-list" id="toc-list">
+
+        <div class="toc-group" id="group-0">
+            <div class="toc-header" onclick="handleGroupClick(event, 0)">
+                <span class="toc-chevron" id="chevron-0"><span class="chevron">▶</span></span>
+                <a href="#executive-architecture-test-engine-specifications" class="toc-header-link" onclick="handleLinkClick(event, '#executive-architecture-test-engine-specifications')">EXECUTIVE ARCHITECTURE & TEST ENGINE SPECIFICATIONS</a>
+                <span class="sub-badge">3</span>
+            </div>
+        
+<div class="toc-sublist" id="sublist-0" style="display: none;">
+
+                <div class="toc-subitem">
+                    <a href="#1-multistage-adaptive-engine-mechanics" class="toc-sublink" onclick="handleLinkClick(event, '#1-multistage-adaptive-engine-mechanics')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">1. Multistage Adaptive Engine Mechanics</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#2-pretest-unscored-questions" class="toc-sublink" onclick="handleLinkClick(event, '#2-pretest-unscored-questions')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">2. Pretest / Unscored Questions</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#3-item-response-theory-irt-scoring-asymmetry" class="toc-sublink" onclick="handleLinkClick(event, '#3-item-response-theory-irt-scoring-asymmetry')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">3. Item Response Theory (IRT) Scoring Asymmetry</span>
+                    </a>
+                </div>
+                
+</div>
+</div>
+
+        <div class="toc-group" id="group-1">
+            <div class="toc-header" onclick="handleGroupClick(event, 1)">
+                <span class="toc-chevron" id="chevron-1"><span class="chevron">▶</span></span>
+                <a href="#part-1-exhaustive-community-scorer-mining-r1" class="toc-header-link" onclick="handleLinkClick(event, '#part-1-exhaustive-community-scorer-mining-r1')">PART 1: EXHAUSTIVE COMMUNITY & SCORER MINING (R1)</a>
+                <span class="sub-badge">4</span>
+            </div>
+        
+<div class="toc-sublist" id="sublist-1" style="display: none;">
+
+                <div class="toc-subitem">
+                    <a href="#11-the-1500-scorer-resource-tier-list-s-tier-to-c-tier" class="toc-sublink" onclick="handleLinkClick(event, '#11-the-1500-scorer-resource-tier-list-s-tier-to-c-tier')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">1.1 The 1500+ Scorer Resource Tier List (S-Tier to C-Tier)</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#12-actionable-study-schedules-pacing-blueprints" class="toc-sublink" onclick="handleLinkClick(event, '#12-actionable-study-schedules-pacing-blueprints')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">1.2 Actionable Study Schedules & Pacing Blueprints</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#13-breaking-the-14001450-plateau" class="toc-sublink" onclick="handleLinkClick(event, '#13-breaking-the-14001450-plateau')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">1.3 Breaking the 1400–1450 Plateau</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#14-final-23-weeks-peak-performance-biological-protocol" class="toc-sublink" onclick="handleLinkClick(event, '#14-final-23-weeks-peak-performance-biological-protocol')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">1.4 Final 2–3 Weeks Peak Performance & Biological Protocol</span>
+                    </a>
+                </div>
+                
+</div>
+</div>
+
+        <div class="toc-group" id="group-2">
+            <div class="toc-header" onclick="handleGroupClick(event, 2)">
+                <span class="toc-chevron" id="chevron-2"><span class="chevron">▶</span></span>
+                <a href="#part-2-digital-sat-rw-700-master-strategy-cheatsheet-r2" class="toc-header-link" onclick="handleLinkClick(event, '#part-2-digital-sat-rw-700-master-strategy-cheatsheet-r2')">PART 2: DIGITAL SAT RW 700+ MASTER STRATEGY & CHEATSHEET (R2)</a>
+                <span class="sub-badge">4</span>
+            </div>
+        
+<div class="toc-sublist" id="sublist-2" style="display: none;">
+
+                <div class="toc-subitem">
+                    <a href="#21-craft-structure-and-information-ideas" class="toc-sublink" onclick="handleLinkClick(event, '#21-craft-structure-and-information-ideas')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">2.1 Craft & Structure and Information & Ideas</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#22-words-in-context-vocabulary-mastery" class="toc-sublink" onclick="handleLinkClick(event, '#22-words-in-context-vocabulary-mastery')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">2.2 Words in Context & Vocabulary Mastery</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#23-standard-english-conventions-zero-tolerance-cheat-card" class="toc-sublink" onclick="handleLinkClick(event, '#23-standard-english-conventions-zero-tolerance-cheat-card')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">2.3 Standard English Conventions: Zero-Tolerance Cheat Card</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#24-transitions-rhetorical-synthesis" class="toc-sublink" onclick="handleLinkClick(event, '#24-transitions-rhetorical-synthesis')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">2.4 Transitions & Rhetorical Synthesis</span>
+                    </a>
+                </div>
+                
+</div>
+</div>
+
+        <div class="toc-group" id="group-3">
+            <div class="toc-header" onclick="handleGroupClick(event, 3)">
+                <span class="toc-chevron" id="chevron-3"><span class="chevron">▶</span></span>
+                <a href="#part-3-digital-sat-math-780800-master-strategy-desmos-mastery-r3" class="toc-header-link" onclick="handleLinkClick(event, '#part-3-digital-sat-math-780800-master-strategy-desmos-mastery-r3')">PART 3: DIGITAL SAT MATH 780–800 MASTER STRATEGY & DESMOS MASTERY (R3)</a>
+                <span class="sub-badge">3</span>
+            </div>
+        
+<div class="toc-sublist" id="sublist-3" style="display: none;">
+
+                <div class="toc-subitem">
+                    <a href="#31-desmos-advanced-exploitation-cheatsheet-ready-to-use" class="toc-sublink" onclick="handleLinkClick(event, '#31-desmos-advanced-exploitation-cheatsheet-ready-to-use')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">3.1 Desmos Advanced Exploitation Cheatsheet (Ready-to-Use)</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#32-hard-module-2-math-trap-taxonomy" class="toc-sublink" onclick="handleLinkClick(event, '#32-hard-module-2-math-trap-taxonomy')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">3.2 Hard Module 2 Math Trap Taxonomy</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#33-time-management-careless-error-prevention" class="toc-sublink" onclick="handleLinkClick(event, '#33-time-management-careless-error-prevention')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">3.3 Time Management & Careless Error Prevention</span>
+                    </a>
+                </div>
+                
+</div>
+</div>
+
+        <div class="toc-group" id="group-4">
+            <div class="toc-header" onclick="handleGroupClick(event, 4)">
+                <span class="toc-chevron" id="chevron-4"><span class="chevron">▶</span></span>
+                <a href="#part-4-error-log-active-recall-architecture-r4" class="toc-header-link" onclick="handleLinkClick(event, '#part-4-error-log-active-recall-architecture-r4')">PART 4: ERROR LOG & ACTIVE RECALL ARCHITECTURE (R4)</a>
+                <span class="sub-badge">3</span>
+            </div>
+        
+<div class="toc-sublist" id="sublist-4" style="display: none;">
+
+                <div class="toc-subitem">
+                    <a href="#41-the-4-tier-diagnostic-classification-scheme" class="toc-sublink" onclick="handleLinkClick(event, '#41-the-4-tier-diagnostic-classification-scheme')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">4.1 The 4-Tier Diagnostic Classification Scheme</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#42-the-rule-of-3-re-solving-protocol" class="toc-sublink" onclick="handleLinkClick(event, '#42-the-rule-of-3-re-solving-protocol')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">4.2 The "Rule of 3" Re-Solving Protocol</span>
+                    </a>
+                </div>
+                
+
+                <div class="toc-subitem">
+                    <a href="#43-the-final-14-day-error-cycle-schedule-liquidation-protocol" class="toc-sublink" onclick="handleLinkClick(event, '#43-the-final-14-day-error-cycle-schedule-liquidation-protocol')">
+                        <span class="sub-bullet">›</span>
+                        <span class="sub-text">4.3 The Final 14-Day Error Cycle Schedule (Liquidation Protocol)</span>
+                    </a>
+                </div>
+                
+</div>
+</div>
+
+        <div class="toc-group" id="group-5">
+            <div class="toc-header" onclick="handleGroupClick(event, 5)">
+                <span class="toc-chevron" id="chevron-5"><span class="chevron-dot">•</span></span>
+                <a href="#master-checklist-for-test-day-execution" class="toc-header-link" onclick="handleLinkClick(event, '#master-checklist-for-test-day-execution')">MASTER CHECKLIST FOR TEST DAY EXECUTION</a>
+                
+            </div>
+        
+</div>
 </div>
         </div>
     </aside>
@@ -2133,42 +2031,68 @@ Day 1: COGNITIVE PRESERVATION &amp; LOCK-IN
     </main>
 
     <script>
-        function toggleGroup(btn) {
-            const group = btn.closest('.toc-group');
-            if (!group) return;
-            const subgroup = group.querySelector('.toc-subgroup');
-            if (!subgroup) return;
+        function handleGroupClick(event, idx) {
+            const sublist = document.getElementById('sublist-' + idx);
+            const chevron = document.getElementById('chevron-' + idx);
+            if (!sublist) return;
 
-            const isHidden = window.getComputedStyle(subgroup).display === 'none';
-            subgroup.style.display = isHidden ? 'block' : 'none';
-            btn.textContent = isHidden ? '▼' : '▶';
-            btn.style.color = isHidden ? '#38bdf8' : '#94a3b8';
+            // If user clicked the link directly, don't prevent navigation, just open sublist if closed
+            const isOpen = sublist.style.display !== 'none';
+            if (isOpen) {
+                sublist.style.display = 'none';
+                if (chevron) chevron.innerHTML = '<span class="chevron">▶</span>';
+            } else {
+                sublist.style.display = 'flex';
+                if (chevron) chevron.innerHTML = '<span class="chevron" style="color: #38bdf8;">▼</span>';
+            }
+        }
+
+        function handleLinkClick(event, hash) {
+            event.stopPropagation();
+            document.querySelectorAll('.toc-sublink, .toc-header-link').forEach(el => {
+                el.classList.remove('active');
+            });
+            const target = event.currentTarget;
+            if (target) target.classList.add('active');
+
+            // Find parent sublist and ensure it is open
+            const group = target.closest('.toc-group');
+            if (group) {
+                const sublist = group.querySelector('.toc-sublist');
+                const chevron = group.querySelector('.toc-chevron');
+                if (sublist) {
+                    sublist.style.display = 'flex';
+                    if (chevron) chevron.innerHTML = '<span class="chevron" style="color: #38bdf8;">▼</span>';
+                }
+            }
         }
 
         function expandAllTOC() {
-            document.querySelectorAll('.toc-subgroup').forEach(el => {
-                el.style.display = 'block';
+            document.querySelectorAll('.toc-sublist').forEach(el => {
+                el.style.display = 'flex';
             });
-            document.querySelectorAll('.toc-btn').forEach(btn => {
-                btn.textContent = '▼';
-                btn.style.color = '#38bdf8';
+            document.querySelectorAll('.toc-chevron').forEach(ch => {
+                if (ch.querySelector('.chevron')) {
+                    ch.innerHTML = '<span class="chevron" style="color: #38bdf8;">▼</span>';
+                }
             });
         }
 
         function collapseAllTOC() {
-            document.querySelectorAll('.toc-subgroup').forEach(el => {
+            document.querySelectorAll('.toc-sublist').forEach(el => {
                 el.style.display = 'none';
             });
-            document.querySelectorAll('.toc-btn').forEach(btn => {
-                btn.textContent = '▶';
-                btn.style.color = '#94a3b8';
+            document.querySelectorAll('.toc-chevron').forEach(ch => {
+                if (ch.querySelector('.chevron')) {
+                    ch.innerHTML = '<span class="chevron">▶</span>';
+                }
             });
         }
 
         function searchTOC() {
             const query = document.getElementById('toc-search').value.toLowerCase().trim();
             const groups = document.querySelectorAll('.toc-group');
-            
+
             if (query.length > 0) {
                 expandAllTOC();
                 groups.forEach(g => {
@@ -2183,13 +2107,8 @@ Day 1: COGNITIVE PRESERVATION &amp; LOCK-IN
                 groups.forEach(g => {
                     g.style.display = '';
                 });
-                expandAllTOC();
+                collapseAllTOC();
             }
-        }
-
-        function highlightLink(link) {
-            document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
         }
 
         function toggleTheme() {
